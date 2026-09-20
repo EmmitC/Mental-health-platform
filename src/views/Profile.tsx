@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Page } from "@/lib/nav";
 import { toast } from "../components/Toast";
 import Icon, { type IconName } from "../components/Icon";
+import SegmentedTabs from "../components/SegmentedTabs";
 
 interface ProfileProps {
   navigate: (page: Page) => void;
@@ -21,29 +22,17 @@ export default function Profile({ navigate }: ProfileProps) {
         <h1 className="font-display text-3xl md:text-4xl font-[400] text-slate mb-8">Profile</h1>
 
         {/* Avatar */}
-        <div className="flex items-center gap-5 mb-8">
-          <div className="w-20 h-20 rounded-[12px] bg-sageL text-sage flex items-center justify-center"><Icon name="user" className="h-9 w-9" /></div>
+        <div className="light-scope mb-8 flex items-center gap-5 rounded-[12px] bg-sage p-5 text-cream">
+          <img src="/images/avatars/client-sarah.jpg" alt="Sarah Namukasa" className="h-20 w-20 flex-shrink-0 rounded-full object-cover" />
           <div>
-            <p className="font-[600] text-slate">Sarah Namukasa</p>
-            <p className="text-slateM text-sm">sarah.namukasa@email.com</p>
-            <button onClick={() => toast("Photo picker opened")} className="text-sage text-sm font-[500] hover:underline mt-1">Change photo</button>
+            <p className="text-lg font-[700]">Sarah Namukasa</p>
+            <p className="text-sm opacity-90">sarah.namukasa@email.com</p>
+            <button onClick={() => toast("Photo picker opened")} className="mt-1 text-sm font-[600] underline">Change photo</button>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-border mb-8 overflow-x-auto">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-4 py-2.5 text-sm font-[500] whitespace-nowrap border-b-2 -mb-px transition-all ${
-                tab === t ? "border-sage text-sage" : "border-transparent text-slateM hover:text-slate"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs label="Profile sections" className="mb-8" options={tabs} value={tab} onChange={setTab} />
 
         {tab === "Personal" && (
           <div className="space-y-5">

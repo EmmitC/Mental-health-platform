@@ -44,12 +44,12 @@ export default function Counselors({ navigate }: CounselorsProps) {
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <div className="bg-sand border-b border-border">
+      <div className="light-scope bg-sage">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-12">
-          <h1 className="font-display text-4xl md:text-5xl font-[400] text-slate mb-2">
+          <h1 className="font-display text-4xl md:text-5xl font-[400] text-cream mb-2">
             Find a <em>counselor</em>
           </h1>
-          <p className="text-slateM text-lg">Browse qualified professionals and find a good fit for you.</p>
+          <p className="text-cream/85 text-lg">Browse qualified professionals and find a good fit for you.</p>
         </div>
       </div>
 
@@ -150,26 +150,20 @@ function FilterGroup({ label, items, selected, onToggle }: { label: string; item
 function CounselorCard({ counselor: c, navigate }: { counselor: Counselor; navigate: (page: Page, params?: { counselorId?: string }) => void }) {
   return (
     <div className="bg-cream border border-border hover:border-sageMid rounded-[12px] overflow-hidden transition-all group">
-      <div className="flex gap-4 p-5">
-        <div className="w-20 h-20 rounded-xl overflow-hidden bg-sand flex-shrink-0">
-          <img src={c.photo} alt={c.name} className="w-full h-full object-cover object-top" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <div>
-              <h3 className="font-display text-lg font-[400] text-slate leading-tight">{c.name}</h3>
-              <p className="text-slateL text-xs mt-0.5">{c.credentials}</p>
-            </div>
-            {!c.available && (
-              <span className="text-xs bg-amberL text-amber px-2 py-1 rounded-full font-[500] flex-shrink-0">Waitlist</span>
-            )}
-          </div>
-          <div className="flex items-center gap-1 mt-2">
-            {[1,2,3,4,5].map((i) => (
-              <span key={i} className={`text-xs ${i <= Math.round(c.rating) ? "text-amber-500" : "text-sandDark"}`}>★</span>
-            ))}
-            <span className="text-slateL text-xs ml-1">{c.rating} ({c.reviewCount})</span>
-          </div>
+      <div className="relative h-40 overflow-hidden bg-sand">
+        <img src={c.photo} alt={c.name} className="h-full w-full object-cover object-[50%_25%] transition-transform duration-500 group-hover:scale-105" />
+        {!c.available && (
+          <span className="light-scope absolute right-3 top-3 rounded-full bg-sun px-3 py-1 text-xs font-[700] text-slate">Waitlist</span>
+        )}
+      </div>
+      <div className="p-5 pb-3">
+        <h3 className="font-display text-lg font-[700] leading-tight text-slate">{c.name}</h3>
+        <p className="mt-0.5 text-xs text-slateL">{c.credentials}</p>
+        <div className="mt-2 flex items-center gap-1">
+          {[1,2,3,4,5].map((i) => (
+            <span key={i} className={`text-xs ${i <= Math.round(c.rating) ? "text-amber" : "text-sandDark"}`}>★</span>
+          ))}
+          <span className="ml-1 text-xs text-slateL">{c.rating} ({c.reviewCount})</span>
         </div>
       </div>
 

@@ -2,6 +2,15 @@
 
 import type { Page } from "@/lib/nav";
 
+import { Stagger, StaggerItem } from "../components/animation/Reveal";
+
+const tiles = [
+  { bg: "bg-sage text-cream" },
+  { bg: "bg-ember text-slate" },
+  { bg: "bg-sun text-slate" },
+  { bg: "bg-slate text-cream" },
+];
+
 interface AboutProps {
   navigate: (page: Page) => void;
 }
@@ -11,19 +20,19 @@ const team = [
     name: "Dr. Grace Nakamya",
     role: "Clinical Director",
     bio: "PhD in Clinical Psychology from Makerere University. 14 years in clinical practice and supervision.",
-    photo: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=300&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/counselor-grace.jpg",
   },
   {
     name: "Mr. Samuel Ochieng",
     role: "Head of Counseling Services",
     bio: "MSc in Counselling Psychology. Specialises in grief, life transitions, and community mental health.",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/samuel-ochieng.svg",
   },
   {
     name: "Dr. Amina Hassan",
     role: "Family & Youth Specialist",
     bio: "PhD in Family Therapy. Over a decade working with families and young people across East Africa.",
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/counselor-amina.jpg",
   },
 ];
 
@@ -54,7 +63,7 @@ export default function About({ navigate }: AboutProps) {
         <div
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1600&h=900&fit=crop&auto=format')",
+            backgroundImage: "url('/images/session-lounge.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
           }}
@@ -89,7 +98,7 @@ export default function About({ navigate }: AboutProps) {
           </div>
           <div className="rounded-[12px] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&h=500&fit=crop&auto=format"
+              src="/images/session-couch.jpg"
               alt="Two people in a counseling session"
               className="w-full h-80 object-cover object-center"
             />
@@ -103,14 +112,19 @@ export default function About({ navigate }: AboutProps) {
           <h2 className="font-display text-3xl md:text-4xl font-[400] text-slate mb-12" style={{ textWrap: "balance" }}>
             What we stand for
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border rounded-[12px] overflow-hidden border border-border">
-            {values.map(({ title, desc }) => (
-              <div key={title} className="bg-sand p-8">
-                <h3 className="font-[600] text-slate mb-3 text-lg">{title}</h3>
-                <p className="text-slateM text-sm leading-relaxed" style={{ textWrap: "pretty" }}>{desc}</p>
-              </div>
-            ))}
-          </div>
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {values.map(({ title, desc }, i) => {
+              const t = tiles[i % tiles.length];
+              return (
+                <StaggerItem key={title} className="h-full">
+                  <div className={`light-scope h-full rounded-[12px] p-8 ${t.bg}`}>
+                    <h3 className="font-[700] mb-3 text-xl">{title}</h3>
+                    <p className="text-sm leading-relaxed opacity-90" style={{ textWrap: "pretty" }}>{desc}</p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
         </div>
       </section>
 
@@ -137,21 +151,23 @@ export default function About({ navigate }: AboutProps) {
       </section>
 
       {/* Stats row */}
-      <section className="bg-sand border-y border-border">
-        <div className="max-w-5xl mx-auto px-5 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-12">
+        <div className="max-w-5xl mx-auto px-5 lg:px-8">
+          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { figure: "50+", label: "Verified counselors" },
               { figure: "3,200+", label: "Sessions completed" },
               { figure: "5", label: "Languages supported" },
               { figure: "2023", label: "Founded in Kampala" },
-            ].map(({ figure, label }) => (
-              <div key={label} className="text-center">
-                <p className="font-display text-4xl font-[300] text-slate mb-1">{figure}</p>
-                <p className="text-slateM text-sm">{label}</p>
-              </div>
+            ].map(({ figure, label }, i) => (
+              <StaggerItem key={label} className="h-full">
+                <div className={`light-scope h-full rounded-[12px] p-6 ${tiles[(i + 1) % tiles.length].bg}`}>
+                  <p className="font-display text-4xl font-[700] mb-1">{figure}</p>
+                  <p className="text-sm opacity-90">{label}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 

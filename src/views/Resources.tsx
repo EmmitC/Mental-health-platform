@@ -41,10 +41,10 @@ export default function Resources({ navigate }: ResourcesProps) {
   return (
     <div className="min-h-screen bg-cream pb-20 lg:pb-8">
       {/* Header */}
-      <div className="bg-sand border-b border-border">
+      <div className="light-scope bg-ember">
         <div className="max-w-5xl mx-auto px-5 lg:px-8 py-10">
           <h1 className="font-display text-3xl md:text-4xl font-[400] text-slate mb-2">Resource Library</h1>
-          <p className="text-slateM">Explore articles, guides, and exercises at your own pace.</p>
+          <p className="text-slate">Explore articles, guides, and exercises at your own pace.</p>
           <div className="mt-5 relative max-w-md">
             <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slateL" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

@@ -50,12 +50,12 @@ export default function Contact({ navigate }: ContactProps) {
   return (
     <div className="bg-cream">
       {/* Header */}
-      <section className="bg-sand border-b border-border py-16">
+      <section className="light-scope bg-plum py-16">
         <div className="max-w-3xl mx-auto px-5 lg:px-8">
           <h1 className="font-display text-4xl md:text-5xl font-[400] text-slate mb-4" style={{ textWrap: "balance" }}>
             Contact us
           </h1>
-          <p className="text-slateM text-lg leading-relaxed max-w-xl">
+          <p className="text-slate text-lg leading-relaxed max-w-xl">
             We respond to most messages within one business day. For urgent matters, see our crisis contacts below.
           </p>
         </div>

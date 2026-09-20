@@ -74,12 +74,12 @@ export default function Pricing({ navigate }: PricingProps) {
   return (
     <div className="bg-cream">
       {/* Header */}
-      <section className="bg-sand border-b border-border py-16">
+      <section className="light-scope bg-sun py-16">
         <div className="max-w-3xl mx-auto px-5 lg:px-8 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-[400] text-slate mb-4" style={{ textWrap: "balance" }}>
             Session pricing
           </h1>
-          <p className="text-slateM text-lg leading-relaxed max-w-xl mx-auto">
+          <p className="text-slate text-lg leading-relaxed max-w-xl mx-auto">
             Prices are set by individual counselors. The figures below are starting rates; you will see the exact price before you book.
           </p>
         </div>
@@ -93,28 +93,28 @@ export default function Pricing({ navigate }: PricingProps) {
               key={s.name}
               className={`rounded-[12px] border p-6 flex flex-col ${
                 s.highlight
-                  ? "bg-sageL border-sageMid"
+                  ? "light-scope bg-sage border-sage text-cream"
                   : "bg-cream border-border hover:border-sageMid transition-colors"
               }`}
             >
               {s.highlight && (
-                <span className="text-xs font-[600] text-sage bg-sage/10 px-3 py-1 rounded-full self-start mb-4">
+                <span className="text-xs font-[600] text-sageD bg-cream px-3 py-1 rounded-full self-start mb-4">
                   Most booked
                 </span>
               )}
-              <h3 className="font-[600] text-slate text-base mb-1">{s.name}</h3>
-              <p className="text-slateL text-xs mb-4">{s.duration}</p>
-              <p className="text-slateM text-sm leading-relaxed mb-6 flex-1">{s.desc}</p>
+              <h3 className={`font-[700] text-lg mb-1 ${s.highlight ? "text-cream" : "text-slate"}`}>{s.name}</h3>
+              <p className={`text-xs mb-4 ${s.highlight ? "text-cream" : "text-slateL"}`}>{s.duration}</p>
+              <p className={`text-sm leading-relaxed mb-6 flex-1 ${s.highlight ? "text-cream" : "text-slateM"}`}>{s.desc}</p>
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-xs text-slateL mb-0.5">From</p>
-                  <p className="font-display text-2xl font-[400] text-slate">{s.priceFrom}</p>
+                  <p className={`text-xs mb-0.5 ${s.highlight ? "text-cream" : "text-slateL"}`}>From</p>
+                  <p className={`font-display text-2xl font-[700] ${s.highlight ? "text-cream" : "text-slate"}`}>{s.priceFrom}</p>
                 </div>
                 <button
                   onClick={() => navigate("counselors")}
                   className={`text-sm font-[600] px-4 py-2.5 rounded-lg transition-colors ${
                     s.highlight
-                      ? "bg-sage hover:bg-sageD text-cream"
+                      ? "bg-cream hover:bg-sand text-sageD"
                       : "border border-sageMid text-sage hover:bg-sageL"
                   }`}
                 >

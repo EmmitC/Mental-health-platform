@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Page } from "@/lib/nav";
 import { toast } from "../components/Toast";
 import Icon, { type IconName } from "../components/Icon";
+import SegmentedTabs from "../components/SegmentedTabs";
 
 interface CounselorProfileEditProps {
   navigate: (page: Page) => void;
@@ -49,7 +50,7 @@ export default function CounselorProfileEdit({ navigate: _navigate }: CounselorP
         <div className="flex items-center gap-5 mb-8">
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=160&h=160&fit=crop&crop=face&auto=format"
+              src="/images/avatars/counselor-grace.jpg"
               alt="Profile"
               className="w-20 h-20 rounded-[12px] object-cover object-top bg-sand"
             />
@@ -68,19 +69,7 @@ export default function CounselorProfileEdit({ navigate: _navigate }: CounselorP
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-border mb-8 overflow-x-auto">
-          {(["Profile", "Credentials", "Pricing", "Security"] as const).map((t) => (
-            <button
-              key={t}
-              onClick={() => { setTab(t); setSaved(false); }}
-              className={`px-4 py-2.5 text-sm font-[500] whitespace-nowrap border-b-2 -mb-px transition-all ${
-                tab === t ? "border-sage text-sage" : "border-transparent text-slateM hover:text-slate"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs label="Profile sections" className="mb-8" options={["Profile", "Credentials", "Pricing", "Security"] as const} value={tab} onChange={(t) => { setTab(t); setSaved(false); }} />
 
         {tab === "Profile" && (
           <div className="space-y-5">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { todaySchedule, pendingRequests } from "../data/counselorMock";
 import type { Page } from "@/lib/nav";
 import { toast } from "../components/Toast";
+import SegmentedTabs from "../components/SegmentedTabs";
 
 interface CounselorAppointmentsProps {
   navigate: (page: Page) => void;
@@ -16,7 +17,7 @@ const upcomingAppointments = [
   {
     id: "ua1",
     clientName: "Amira Osman",
-    clientPhoto: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/client-amira.jpg",
     service: "Stress Management",
     time: "Thu, 22 Aug — 3:00 PM",
     duration: "50 min",
@@ -26,7 +27,7 @@ const upcomingAppointments = [
   {
     id: "ua2",
     clientName: "James Mutesasira",
-    clientPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/james-mutesasira.svg",
     service: "Individual Counseling",
     time: "Thu, 22 Aug — 4:30 PM",
     duration: "50 min",
@@ -39,7 +40,7 @@ const pastAppointments = [
   {
     id: "p1",
     clientName: "Robert Ssali",
-    clientPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/robert-ssali.svg",
     service: "Grief Support",
     time: "Mon, 18 Aug — 11:00 AM",
     duration: "50 min",
@@ -49,7 +50,7 @@ const pastAppointments = [
   {
     id: "p2",
     clientName: "Sarah Namukasa",
-    clientPhoto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/client-sarah.jpg",
     service: "Individual Counseling",
     time: "Today, 10:00 AM",
     duration: "50 min",
@@ -83,24 +84,7 @@ export default function CounselorAppointments({ navigate }: CounselorAppointment
 
       <div className="max-w-3xl mx-auto px-5 lg:px-8 py-8">
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-border mb-6">
-          {(["Upcoming", "Pending", "Past"] as TabKey[]).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-4 py-2.5 text-sm font-[500] border-b-2 -mb-px transition-all flex items-center gap-2 ${
-                tab === t ? "border-sage text-sage" : "border-transparent text-slateM hover:text-slate"
-              }`}
-            >
-              {t}
-              {counts[t] > 0 && (
-                <span className={`text-[10px] font-[700] px-1.5 py-0.5 rounded-full ${t === "Pending" ? "bg-terra text-cream" : "bg-sand text-slateM"}`}>
-                  {counts[t]}
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs label="Appointment status" className="mb-6" options={["Upcoming", "Pending", "Past"] as TabKey[]} value={tab} onChange={setTab} counts={counts} />
 
         {tab === "Upcoming" && (
           <div className="space-y-3">

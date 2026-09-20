@@ -125,16 +125,16 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
 
       <div className="max-w-3xl mx-auto px-5 py-10">
         {/* Counselor summary strip */}
-        <div className="flex items-center gap-4 p-4 bg-sageL border border-sageMid rounded-xl mb-8">
-          <img src={counselor.photo} alt={counselor.name} className="w-12 h-12 rounded-xl object-cover object-top" />
+        <div className="flex items-center gap-4 p-4 light-scope bg-sage text-cream rounded-[12px] mb-8">
+          <img src={counselor.photo} alt={counselor.name} className="w-12 h-12 rounded-full object-cover object-top" />
           <div>
-            <p className="font-[600] text-sage text-sm">{counselor.name}</p>
-            <p className="text-sage/70 text-xs">{counselor.credentials}</p>
+            <p className="font-[600] text-cream text-sm">{counselor.name}</p>
+            <p className="text-cream/80 text-xs">{counselor.credentials}</p>
           </div>
           {step > 0 && service && (
             <div className="ml-auto text-right">
-              <p className="text-sage font-[600] text-sm">{service.name}</p>
-              <p className="text-sage/70 text-xs">{service.duration} min · UGX {service.price.toLocaleString()}</p>
+              <p className="text-cream font-[600] text-sm">{service.name}</p>
+              <p className="text-cream/80 text-xs">{service.duration} min · UGX {service.price.toLocaleString()}</p>
             </div>
           )}
         </div>

@@ -53,7 +53,7 @@ export default function CounselorProfile({ navigate, counselorId }: CounselorPro
                 <p className="text-slateM mb-2">{counselor.credentials} · {counselor.title}</p>
                 <div className="flex items-center gap-1 mb-3">
                   {[1,2,3,4,5].map((i) => (
-                    <span key={i} className={`text-sm ${i <= Math.round(counselor.rating) ? "text-amber-500" : "text-sandDark"}`}>★</span>
+                    <span key={i} className={`text-sm ${i <= Math.round(counselor.rating) ? "text-amber" : "text-sandDark"}`}>★</span>
                   ))}
                   <span className="text-slateM text-sm ml-1">{counselor.rating} ({counselor.reviewCount} reviews)</span>
                 </div>
@@ -225,7 +225,7 @@ export default function CounselorProfile({ navigate, counselorId }: CounselorPro
                     <p className="font-display text-5xl font-[300] text-slate">{counselor.rating}</p>
                     <div className="flex gap-0.5 justify-center my-1">
                       {[1,2,3,4,5].map((i) => (
-                        <span key={i} className="text-amber-500">★</span>
+                        <span key={i} className="text-amber">★</span>
                       ))}
                     </div>
                     <p className="text-slateL text-xs">{counselor.reviewCount} reviews</p>
@@ -243,7 +243,7 @@ export default function CounselorProfile({ navigate, counselorId }: CounselorPro
                         </div>
                         <div className="flex gap-0.5">
                           {[1,2,3,4,5].map((i) => (
-                            <span key={i} className={`text-xs ${i <= r.rating ? "text-amber-500" : "text-sandDark"}`}>★</span>
+                            <span key={i} className={`text-xs ${i <= r.rating ? "text-amber" : "text-sandDark"}`}>★</span>
                           ))}
                         </div>
                       </div>

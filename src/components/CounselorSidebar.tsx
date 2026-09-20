@@ -30,7 +30,7 @@ export default function CounselorSidebar({ navigate, currentPage, onLogout }: Co
           <div className="mt-3 flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-sageMid/20 flex items-center justify-center overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=80&h=80&fit=crop&crop=face&auto=format"
+                src="/images/avatars/counselor-grace.jpg"
                 alt="Dr. Nakamya"
                 className="w-full h-full object-cover object-top"
               />

@@ -49,7 +49,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
             <div className="text-center">
               <div className="w-32 h-32 rounded-full bg-slateM mx-auto mb-4 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=300&fit=crop&crop=face&auto=format"
+                  src="/images/avatars/counselor-grace.jpg"
                   alt="Dr. Grace Nakamya"
                   className="w-full h-full object-cover object-top"
                 />
@@ -112,7 +112,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
         <div className="text-center mb-10">
           <div className="w-20 h-20 rounded-[12px] overflow-hidden mx-auto mb-4 bg-slateM">
             <img
-              src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=300&fit=crop&crop=face&auto=format"
+              src="/images/avatars/counselor-grace.jpg"
               alt="Dr. Grace Nakamya"
               className="w-full h-full object-cover object-top"
             />

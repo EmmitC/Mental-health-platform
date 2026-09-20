@@ -41,19 +41,19 @@ const resourcePreviews = [
     title: "Understanding Anxiety",
     category: "Anxiety",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=500&h=320&fit=crop&auto=format",
+    image: "/images/mask.jpg",
   },
   {
     title: "Managing Stress at Work",
     category: "Stress",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=500&h=320&fit=crop&auto=format",
+    image: "/images/stress-laptop.jpg",
   },
   {
     title: "Building Better Sleep",
     category: "Sleep",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=500&h=320&fit=crop&auto=format",
+    image: "/images/window-light.jpg",
   },
 ];
 
@@ -69,7 +69,7 @@ export default function Home({ navigate }: HomeProps) {
         <div
           className="absolute inset-0 bg-slate/50"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1714976694867-bc0e012fab70?w=1600&h=900&fit=crop&auto=format')",
+            backgroundImage: "url('/images/window-rest.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -214,7 +214,7 @@ export default function Home({ navigate }: HomeProps) {
 
                   <div className="flex items-center gap-1 mb-1">
                     {[1,2,3,4,5].map((i) => (
-                      <span key={i} className={`text-sm ${i <= Math.round(c.rating) ? "text-amber-500" : "text-sandDark"}`}>★</span>
+                      <span key={i} className={`text-sm ${i <= Math.round(c.rating) ? "text-amber" : "text-sandDark"}`}>★</span>
                     ))}
                     <span className="text-slateL text-xs ml-1">{c.rating}</span>
                   </div>
@@ -253,14 +253,16 @@ export default function Home({ navigate }: HomeProps) {
 
       {/* How It Works */}
       <section className="py-20 max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="mb-14">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+        <div className="mb-10">
           <h2 className="font-display text-4xl md:text-5xl font-[400] text-slate mb-3">
             Getting started is <em>easy</em>
           </h2>
           <p className="text-slateM text-lg">Four steps to your first session.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {[
             { step: "01", title: "Create an account", desc: "Sign up in minutes. No lengthy forms or medical history required to get started." },
             { step: "02", title: "Tell us what you need", desc: "Share your preferences so we can suggest counselors who are a good fit for you." },
@@ -273,6 +275,11 @@ export default function Home({ navigate }: HomeProps) {
               <p className="text-slateM text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
+        </div>
+        </div>
+        <Reveal>
+          <img src="/images/session-lounge.jpg" alt="A counselor and client talking in a calm room" className="aspect-square w-full rounded-[12px] object-cover" />
+        </Reveal>
         </div>
 
         <div className="mt-12 text-center">
@@ -387,14 +394,30 @@ export default function Home({ navigate }: HomeProps) {
         </div>
       </section>
 
-      {/* Testimonial */}
+      {/* Community: testimonial + quote tiles */}
       <section className="py-20 max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="font-display text-3xl md:text-4xl font-[300] text-slate leading-relaxed mb-8">
-            <em>&ldquo;I was nervous about reaching out. But from the first session, I felt genuinely heard. It made all the difference.&rdquo;</em>
-          </p>
-          <p className="text-slateL text-sm font-[500]">SereneMind client, 2025</p>
-        </div>
+        <Reveal className="mb-10 max-w-xl">
+          <h2 className="font-display text-4xl md:text-5xl font-[400] text-slate mb-3">
+            You are <em>not alone</em>
+          </h2>
+          <p className="text-slateM text-lg">Care that makes room for all of who you are, faith and feelings included.</p>
+        </Reveal>
+        <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <StaggerItem className="h-full">
+            <figure className="light-scope flex h-full flex-col justify-between rounded-[12px] bg-sun p-8 text-slate">
+              <blockquote className="font-display text-2xl font-[600] leading-snug">
+                &ldquo;I was nervous about reaching out. But from the first session, I felt genuinely heard.&rdquo;
+              </blockquote>
+              <figcaption className="mt-8 text-sm font-[600]">SereneMind client, 2025</figcaption>
+            </figure>
+          </StaggerItem>
+          <StaggerItem className="h-full">
+            <img src="/images/quote-therapist.jpg" alt="You can have both God and a therapist." className="h-full w-full rounded-[12px] object-cover" />
+          </StaggerItem>
+          <StaggerItem className="h-full">
+            <img src="/images/quote-wellness.jpg" alt="Therapy and mental wellness" className="h-full w-full rounded-[12px] object-cover" />
+          </StaggerItem>
+        </Stagger>
       </section>
 
       {/* Safety Section */}

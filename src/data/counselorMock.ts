@@ -58,7 +58,7 @@ export const pendingRequests: PendingRequest[] = [
   {
     id: "pr1",
     clientName: "James Mutesasira",
-    clientPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/james-mutesasira.svg",
     service: "Individual Counseling",
     requestedDate: "Thursday, 22 Aug",
     requestedTime: "2:00 PM",
@@ -69,7 +69,7 @@ export const pendingRequests: PendingRequest[] = [
   {
     id: "pr2",
     clientName: "Fatuma Nakato",
-    clientPhoto: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/fatuma-nakato.svg",
     service: "Initial Consultation",
     requestedDate: "Friday, 23 Aug",
     requestedTime: "10:00 AM",
@@ -83,7 +83,7 @@ export const todaySchedule: ScheduledSession[] = [
   {
     id: "s1",
     clientName: "Sarah Namukasa",
-    clientPhoto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/client-sarah.jpg",
     service: "Individual Counseling",
     time: "10:00 AM",
     duration: "50 min",
@@ -93,7 +93,7 @@ export const todaySchedule: ScheduledSession[] = [
   {
     id: "s2",
     clientName: "Daniel Kato",
-    clientPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/daniel-kato.svg",
     service: "Follow-up Session",
     time: "2:00 PM",
     duration: "50 min",
@@ -103,7 +103,7 @@ export const todaySchedule: ScheduledSession[] = [
   {
     id: "s3",
     clientName: "Grace Apio",
-    clientPhoto: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=80&h=80&fit=crop&crop=face&auto=format",
+    clientPhoto: "/images/avatars/client-grace.jpg",
     service: "Individual Counseling",
     time: "4:00 PM",
     duration: "50 min",
@@ -116,7 +116,7 @@ export const counselorClients: CounselorClient[] = [
   {
     id: "cl1",
     name: "Sarah Namukasa",
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/client-sarah.jpg",
     age: 28,
     preferredLanguage: "English",
     totalSessions: 8,
@@ -127,7 +127,7 @@ export const counselorClients: CounselorClient[] = [
   {
     id: "cl2",
     name: "Daniel Kato",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/daniel-kato.svg",
     age: 34,
     preferredLanguage: "English, Luganda",
     totalSessions: 5,
@@ -138,7 +138,7 @@ export const counselorClients: CounselorClient[] = [
   {
     id: "cl3",
     name: "Grace Apio",
-    photo: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/client-grace.jpg",
     age: 24,
     preferredLanguage: "English",
     totalSessions: 3,
@@ -149,7 +149,7 @@ export const counselorClients: CounselorClient[] = [
   {
     id: "cl4",
     name: "Robert Ssali",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/robert-ssali.svg",
     age: 41,
     preferredLanguage: "English, Luganda",
     totalSessions: 12,
@@ -160,7 +160,7 @@ export const counselorClients: CounselorClient[] = [
   {
     id: "cl5",
     name: "Amira Osman",
-    photo: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/client-amira.jpg",
     age: 31,
     preferredLanguage: "English, Swahili",
     totalSessions: 6,
@@ -262,7 +262,7 @@ export const adminCounselors: AdminCounselorRecord[] = [
     verification: "Verified",
     totalSessions: 342,
     joinedDate: "Jan 2024",
-    photo: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/counselor-grace.jpg",
   },
   {
     id: "ac2",
@@ -273,7 +273,7 @@ export const adminCounselors: AdminCounselorRecord[] = [
     verification: "Verified",
     totalSessions: 218,
     joinedDate: "Mar 2024",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/samuel-ochieng.svg",
   },
   {
     id: "ac3",
@@ -284,7 +284,7 @@ export const adminCounselors: AdminCounselorRecord[] = [
     verification: "Verified",
     totalSessions: 156,
     joinedDate: "Jun 2024",
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/counselor-amina.jpg",
   },
   {
     id: "ac4",
@@ -295,7 +295,7 @@ export const adminCounselors: AdminCounselorRecord[] = [
     verification: "Pending",
     totalSessions: 0,
     joinedDate: "Aug 2026",
-    photo: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/joyce-achieng.svg",
   },
   {
     id: "ac5",
@@ -306,6 +306,6 @@ export const adminCounselors: AdminCounselorRecord[] = [
     verification: "Pending",
     totalSessions: 0,
     joinedDate: "Aug 2026",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face&auto=format",
+    photo: "/images/avatars/kenneth-otieno.svg",
   },
 ];

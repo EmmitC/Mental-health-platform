@@ -425,7 +425,7 @@ function AuthShell({ title, subtitle, children }: { title: string; subtitle: str
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1758273241086-f3585ef8c2f8?w=900&h=1200&fit=crop&auto=format')",
+            backgroundImage: "url('/images/window-light.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

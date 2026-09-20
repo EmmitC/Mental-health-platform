@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Page } from "@/lib/nav";
+import SegmentedTabs from "../components/SegmentedTabs";
 
 interface NotificationsProps {
   navigate: (page: Page) => void;
@@ -126,24 +127,7 @@ export default function Notifications({ navigate }: NotificationsProps) {
         </p>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-border mb-6">
-          {(["All", "Unread"] as const).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-4 py-2.5 text-sm font-[500] border-b-2 -mb-px transition-all ${
-                tab === t ? "border-sage text-sage" : "border-transparent text-slateM hover:text-slate"
-              }`}
-            >
-              {t}
-              {t === "Unread" && unreadCount > 0 && (
-                <span className="ml-2 bg-terra text-cream text-[10px] font-[700] px-1.5 py-0.5 rounded-full">
-                  {unreadCount}
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs label="Notification filter" className="mb-6" options={["All", "Unread"] as const} value={tab} onChange={setTab} counts={{ Unread: unreadCount }} />
 
         {/* Notification list */}
         {displayed.length === 0 ? (

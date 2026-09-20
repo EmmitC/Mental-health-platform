@@ -52,10 +52,10 @@ export default function CounselorDashboard({ navigate }: CounselorDashboardProps
             { label: "Pending requests", value: requests.length, color: "text-terra" },
             { label: "Unread messages", value: counselorStats.unreadMessages, color: "text-amber" },
             { label: "This week", value: `${counselorStats.weekSessions} sessions`, color: "text-slate" },
-          ].map(({ label, value, color }) => (
-            <div key={label} className="bg-cream border border-border rounded-[12px] p-5">
-              <p className={`font-display text-3xl font-[300] ${color} mb-1`}>{value}</p>
-              <p className="text-slateM text-xs">{label}</p>
+          ].map(({ label, value }, i) => (
+            <div key={label} className={`light-scope rounded-[12px] p-5 ${["bg-sage text-cream", "bg-ember text-slate", "bg-sun text-slate", "bg-slate text-cream"][i]}`}>
+              <p className="font-display text-3xl font-[700] mb-1">{value}</p>
+              <p className="text-xs font-[500] opacity-90">{label}</p>
             </div>
           ))}
         </div>

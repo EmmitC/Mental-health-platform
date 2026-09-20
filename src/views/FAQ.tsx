@@ -145,12 +145,12 @@ export default function FAQ({ navigate }: FAQProps) {
   return (
     <div className="bg-cream">
       {/* Header */}
-      <section className="bg-sand border-b border-border py-16">
+      <section className="light-scope bg-slate py-16">
         <div className="max-w-3xl mx-auto px-5 lg:px-8 text-center">
-          <h1 className="font-display text-4xl md:text-5xl font-[400] text-slate mb-4" style={{ textWrap: "balance" }}>
+          <h1 className="font-display text-4xl md:text-5xl font-[400] text-cream mb-4" style={{ textWrap: "balance" }}>
             Frequently asked questions
           </h1>
-          <p className="text-slateM text-lg leading-relaxed">
+          <p className="text-cream/85 text-lg leading-relaxed">
             Answers to common questions about sessions, pricing, privacy, and safety.
           </p>
         </div>

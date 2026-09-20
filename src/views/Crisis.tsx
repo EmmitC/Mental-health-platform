@@ -55,6 +55,13 @@ export default function Crisis({ navigate }: CrisisProps) {
           <p className="text-slateL text-xs mt-4">You can also tap the number to call on mobile</p>
         </div>
 
+        <div className="relative mb-10 overflow-hidden rounded-[12px]">
+          <img src="/images/embrace.jpg" alt="Two people embracing" className="h-64 w-full object-cover object-[50%_35%] sm:h-80" />
+          <div className="light-scope absolute inset-0 flex items-end bg-gradient-to-t from-slate/80 to-transparent p-6">
+            <p className="font-display text-2xl font-[600] text-cream">You do not have to carry this alone.</p>
+          </div>
+        </div>
+
         {/* Safe button */}
         <div className="text-center mb-12">
           <button

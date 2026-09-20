@@ -37,11 +37,11 @@ export default function AdminDashboard({ navigate }: AdminDashboardProps) {
       <div className="max-w-5xl mx-auto px-5 lg:px-8 py-8 space-y-8">
         {/* Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {metrics.map(({ label, value, sub, color }) => (
-            <div key={label} className="bg-cream border border-border rounded-[12px] p-5">
-              <p className={`font-display text-3xl font-[300] ${color} mb-1`}>{value}</p>
-              <p className="text-slateM text-xs font-[500]">{label}</p>
-              <p className="text-slateXL text-xs mt-1">{sub}</p>
+          {metrics.map(({ label, value, sub }, i) => (
+            <div key={label} className={`light-scope rounded-[12px] p-5 ${["bg-sage text-cream", "bg-ember text-slate", "bg-sun text-slate", "bg-slate text-cream"][i % 4]}`}>
+              <p className="font-display text-3xl font-[700] mb-1">{value}</p>
+              <p className="text-xs font-[600]">{label}</p>
+              <p className="text-xs mt-1 opacity-85">{sub}</p>
             </div>
           ))}
         </div>
