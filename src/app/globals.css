@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
+/* dark: utilities follow the data-theme attribute (set by the toggle), not just the OS. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @theme {
   /* Freud Design System V1.2 — Urbanist */
   --font-display: 'Urbanist', system-ui, sans-serif;

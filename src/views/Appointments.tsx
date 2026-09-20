@@ -6,6 +6,9 @@ import type { Page } from "@/lib/nav";
 import { toast } from "../components/Toast";
 import Icon, { type IconName } from "../components/Icon";
 import SegmentedTabs from "../components/SegmentedTabs";
+import Counter from "../components/animation/Counter";
+import { motion } from "motion/react";
+import { springs } from "@/lib/motion";
 
 interface AppointmentsProps {
   navigate: (page: Page, params?: { counselorId?: string }) => void;
@@ -37,15 +40,30 @@ export default function Appointments({ navigate }: AppointmentsProps) {
   return (
     <div className="min-h-screen bg-cream pb-20 lg:pb-8">
       <div className="max-w-4xl mx-auto px-5 lg:px-8 py-8">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="font-display text-3xl md:text-4xl font-[400] text-slate">Appointments</h1>
-          <button
-            onClick={() => navigate("counselors")}
-            className="bg-sage hover:bg-sageD text-cream font-[600] px-5 py-2.5 rounded-xl text-sm transition-colors"
-          >
-            + Book New
-          </button>
+        {/* Header: kit "My Conversations"-style summary card */}
+        <div className="light-scope mb-6 rounded-[12px] bg-slate p-6 text-cream">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h1 className="text-sm font-[600] opacity-80">Appointments</h1>
+              <p className="mt-2 font-display text-6xl font-[700] leading-none"><Counter value={upcomingAppts.length} /></p>
+              <p className="mt-2 text-sm opacity-80">upcoming {upcomingAppts.length === 1 ? "session" : "sessions"}</p>
+            </div>
+            <button
+              onClick={() => navigate("counselors")}
+              aria-label="Book a new appointment"
+              className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-ember text-slate transition-transform hover:scale-105"
+            >
+              <Icon name="plus" className="h-6 w-6" />
+            </button>
+          </div>
+          <div className="mt-6 grid grid-cols-3 gap-3 border-t border-cream/15 pt-4 text-center">
+            {[["Past", pastAppts.length], ["Cancelled", cancelledAppts.length], ["Next", upcomingAppts[0]?.time ?? "None"]].map(([label, value]) => (
+              <div key={label as string}>
+                <p className="font-display text-xl font-[700]">{value}</p>
+                <p className="text-xs opacity-75">{label}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Tabs */}
@@ -212,6 +230,12 @@ export default function Appointments({ navigate }: AppointmentsProps) {
   );
 }
 
+const typeTone: Record<string, string> = {
+  Video: "bg-sage text-cream",
+  Audio: "bg-ember text-slate",
+  "In Person": "bg-sun text-slate",
+};
+
 function AppointmentCard({
   appointment: a, isSelected, onSelect, onCancel, navigate,
 }: {
@@ -221,47 +245,54 @@ function AppointmentCard({
   onCancel: () => void;
   navigate: (page: Page, params?: { counselorId?: string }) => void;
 }) {
+  // "Wednesday, August 26" -> Wed / Aug / 26
+  const [weekday = "", rest = ""] = a.date.split(", ");
+  const [month = "", day = ""] = rest.split(" ");
+  const inactive = a.status === "Cancelled" || a.status === "Completed";
   return (
-    <div className={`bg-cream border rounded-[12px] overflow-hidden transition-all ${isSelected ? "border-sage bg-sageL/20" : "border-border hover:border-sageMid"}`}>
-      <div className="p-5 flex items-start gap-4">
-        <img src={a.counselor.photo} alt={a.counselor.name} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
-        <div className="flex-1 min-w-0">
+    <motion.div
+      whileHover={{ y: -3 }}
+      transition={springs.responsive}
+      className={`overflow-hidden rounded-[12px] border transition-colors ${isSelected ? "border-sage bg-sageL/30" : "border-border bg-cream hover:border-sageMid"}`}
+    >
+      <div className="flex gap-4 p-4 sm:p-5">
+        <div className={`light-scope flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded-[12px] ${inactive ? "bg-sandDark text-slate" : typeTone[a.sessionType]}`}>
+          <span className="text-[11px] font-[700] uppercase tracking-wide opacity-80">{weekday.slice(0, 3)}</span>
+          <span className="font-display text-3xl font-[700] leading-none">{day}</span>
+          <span className="text-[11px] font-[600] uppercase opacity-80">{month.slice(0, 3)}</span>
+        </div>
+        <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-2">
-            <div>
-              <p className="font-[600] text-slate">{a.counselor.name}</p>
-              <p className="text-slateL text-xs">{a.service}</p>
+            <div className="min-w-0">
+              <p className="truncate font-[700] text-slate">{a.counselor.name}</p>
+              <p className="text-xs text-slateL">{a.service}</p>
             </div>
-            <span className={`text-xs font-[600] px-2.5 py-1 rounded-full flex-shrink-0 ${statusColor[a.status] ?? "bg-sand text-slateM"}`}>
+            <span className={`flex-shrink-0 rounded-full px-2.5 py-1 text-xs font-[600] ${statusColor[a.status] ?? "bg-sand text-slateM"}`}>
               {a.status}
             </span>
           </div>
-          <div className="flex flex-wrap gap-3 mt-2 text-xs text-slateM">
-            <span>{a.date}</span>
-            <span>·</span>
-            <span>{a.time}</span>
-            <span>·</span>
-            <span>{a.duration} min</span>
-            <span>·</span>
-            <span>{a.sessionType}</span>
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slateM">
+            <span className="inline-flex items-center gap-1.5"><Icon name="clock" className="h-3.5 w-3.5" />{a.time} · {a.duration} min</span>
+            <span className="inline-flex items-center gap-1.5"><Icon name={a.sessionType === "Video" ? "video" : a.sessionType === "Audio" ? "audio" : "pin"} className="h-3.5 w-3.5" />{a.sessionType}</span>
           </div>
         </div>
       </div>
 
-      <div className="px-5 pb-5 flex gap-2">
+      <div className="flex gap-2 border-t border-border px-4 py-3 sm:px-5">
         {a.status === "Confirmed" && (
-          <button onClick={() => navigate("session-lobby" as Page)} className="flex-1 bg-sage hover:bg-sageD text-cream font-[600] py-2 rounded-lg text-sm transition-colors">
-            Join Session
+          <button onClick={() => navigate("session-lobby" as Page)} className="flex-1 rounded-full bg-slate py-2.5 text-sm font-[600] text-cream transition-colors hover:bg-slateM">
+            Join session
           </button>
         )}
-        <button onClick={onSelect} className="flex-1 border border-border py-2 rounded-lg text-sm font-[500] text-slateM hover:bg-sand transition-all">
-          {isSelected ? "Close" : "View Details"}
+        <button onClick={onSelect} className="flex-1 rounded-full border border-border py-2.5 text-sm font-[500] text-slateM transition-colors hover:bg-sand">
+          {isSelected ? "Close" : "Details"}
         </button>
         {a.status === "Confirmed" && (
-          <button onClick={onCancel} className="px-3 py-2 border border-border rounded-lg text-xs text-slateL hover:border-crisis/30 hover:text-crisis hover:bg-crisisL transition-all">
+          <button onClick={onCancel} className="rounded-full border border-border px-4 py-2.5 text-sm text-slateL transition-colors hover:border-crisis/40 hover:bg-crisisL hover:text-crisis">
             Cancel
           </button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

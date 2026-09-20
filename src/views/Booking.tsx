@@ -3,7 +3,8 @@
 import { useMemo, useState } from "react";
 import { counselors } from "../data/mock";
 import type { Page } from "@/lib/nav";
-import Icon from "../components/Icon";
+import Icon, { type IconName } from "../components/Icon";
+import { motion } from "motion/react";
 import { buildDays, calDays, fmtLong, fmtRange, leadingBlanks as blanksFor } from "../data/calendar";
 import { toast } from "../components/Toast";
 
@@ -11,6 +12,8 @@ interface BookingProps {
   navigate: (page: Page, params?: { counselorId?: string }) => void;
   counselorId: string | null;
 }
+
+const serviceIcons: IconName[] = ["spark", "user", "calendar", "clock"];
 
 const services = [
   { name: "Initial Consultation", duration: 30, price: 60000, desc: "A first session to discuss your needs and see if we are a good fit." },
@@ -44,54 +47,51 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
 
   if (step === steps.length - 1) {
     return (
-      <div className="min-h-screen bg-cream flex items-center justify-center px-5">
-        <div className="max-w-md w-full text-center py-16">
-          <div className="w-20 h-20 bg-sageL rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon name="check" className="h-9 w-9 text-sage" />
+      <div className="min-h-screen bg-cream px-5 pb-16">
+        <div className="mx-auto max-w-md pt-8">
+          <div className="relative overflow-hidden rounded-[12px]">
+            <img src="/images/window-rest.jpg" alt="" className="h-56 w-full object-cover object-[50%_30%]" />
+            <div className="light-scope absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-slate/85 via-slate/30 to-transparent pb-6 text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20, delay: 0.15 }}
+                className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-sage text-cream"
+              >
+                <Icon name="check" className="h-7 w-7" />
+              </motion.div>
+              <h1 className="font-display text-3xl font-[700] text-cream">Appointment confirmed</h1>
+            </div>
           </div>
-          <h1 className="font-display text-3xl md:text-4xl font-[400] text-slate mb-2">Appointment Confirmed</h1>
-          <p className="text-slateM mb-8">You will receive a confirmation email with all the details.</p>
+          <p className="my-6 text-center text-slateM">You will receive a confirmation email with all the details.</p>
 
-          <div className="bg-sand border border-border rounded-[12px] p-6 text-left space-y-3 mb-8">
-            <div className="flex justify-between text-sm">
-              <span className="text-slateM">Counselor</span>
-              <span className="font-[500] text-slate">{counselor.name}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slateM">Service</span>
-              <span className="font-[500] text-slate">{service.name}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slateM">Date</span>
-              <span className="font-[500] text-slate">{selectedDate ? fmtLong(selectedDate) : "To be confirmed"}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slateM">Time</span>
-              <span className="font-[500] text-slate">{selectedTime ?? "To be confirmed"}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slateM">Format</span>
-              <span className="font-[500] text-slate">{sessionType} Session</span>
-            </div>
-            <div className="flex justify-between text-sm border-t border-border pt-3">
-              <span className="text-slateM font-[600]">Total Paid</span>
-              <span className="font-[700] text-sage">UGX {service.price.toLocaleString()}</span>
+          <div className="light-scope mb-6 space-y-3 rounded-[12px] bg-slate p-6 text-sm text-cream">
+            {[
+              ["Counselor", counselor.name],
+              ["Service", service.name],
+              ["Date", selectedDate ? fmtLong(selectedDate) : "To be confirmed"],
+              ["Time", selectedTime ?? "To be confirmed"],
+              ["Format", `${sessionType} Session`],
+            ].map(([label, value]) => (
+              <div key={label} className="flex justify-between gap-4">
+                <span className="opacity-75">{label}</span>
+                <span className="text-right font-[600]">{value}</span>
+              </div>
+            ))}
+            <div className="flex items-baseline justify-between border-t border-cream/20 pt-3">
+              <span className="font-[600]">Total paid</span>
+              <span className="font-display text-2xl font-[700] text-sun">UGX {service.price.toLocaleString()}</span>
             </div>
           </div>
 
           <div className="space-y-3">
-            <button onClick={() => toast("Added to your calendar")} className="w-full flex items-center justify-center gap-2 border border-border py-3 rounded-xl text-sm font-[500] text-slateM hover:bg-sand transition-all">
-              Add to Calendar</button>
-            <button
-              onClick={() => navigate("appointments")}
-              className="w-full bg-sage hover:bg-sageD text-cream font-[600] py-3 rounded-xl transition-colors"
-            >
-              View My Appointments
+            <button onClick={() => toast("Added to your calendar")} className="flex w-full items-center justify-center gap-2 rounded-full border border-border py-3 text-sm font-[500] text-slateM transition-all hover:bg-sand">
+              Add to Calendar
             </button>
-            <button
-              onClick={() => navigate("dashboard")}
-              className="w-full text-sm text-slateM hover:text-slate transition-colors py-2"
-            >
+            <button onClick={() => navigate("appointments")} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate py-3.5 font-[600] text-cream transition-colors hover:bg-slateM">
+              View My Appointments <span aria-hidden="true">→</span>
+            </button>
+            <button onClick={() => navigate("dashboard")} className="w-full py-2 text-sm text-slateM transition-colors hover:text-slate">
               Return to Dashboard
             </button>
           </div>
@@ -102,23 +102,22 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
 
   return (
     <div className="min-h-screen bg-cream">
-      {/* Progress Header */}
-      <div className="bg-sand border-b border-border sticky top-14 z-10">
-        <div className="max-w-3xl mx-auto px-5 py-4">
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
-            {steps.slice(0, -1).map((s, i) => (
-              <div key={s} className="flex items-center gap-2 flex-shrink-0">
-                <div className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-[600] transition-all ${
-                  i < step ? "bg-sage text-cream" :
-                  i === step ? "bg-sage text-cream ring-4 ring-sageL" :
-                  "bg-sandDark text-slateL"
-                }`}>
-                  {i < step ? "✓" : i + 1}
-                </div>
-                <span className={`text-sm hidden sm:block transition-colors ${i === step ? "font-[600] text-slate" : "text-slateL"}`}>{s}</span>
-                {i < steps.length - 2 && <span className="text-border">·</span>}
-              </div>
-            ))}
+      {/* Progress header: kit "STEP n OF N" pill + animated bar */}
+      <div className="sticky top-14 z-10 border-b border-border bg-cream/95 backdrop-blur-sm">
+        <div className="mx-auto max-w-3xl px-5 py-3">
+          <div className="mb-2 flex items-center justify-between">
+            <p className="text-sm font-[700] text-slate">{steps[step]}</p>
+            <span className="rounded-full bg-sand px-3 py-1 text-xs font-[700] tracking-wide text-slateM">
+              STEP {step + 1} OF {steps.length - 1}
+            </span>
+          </div>
+          <div className="h-1.5 overflow-hidden rounded-full bg-sandDark" role="progressbar" aria-valuemin={1} aria-valuemax={steps.length - 1} aria-valuenow={step + 1}>
+            <motion.div
+              className="h-full rounded-full bg-sage"
+              initial={false}
+              animate={{ width: `${((step + 1) / (steps.length - 1)) * 100}%` }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            />
           </div>
         </div>
       </div>
@@ -129,12 +128,12 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
           <img src={counselor.photo} alt={counselor.name} className="w-12 h-12 rounded-full object-cover object-top" />
           <div>
             <p className="font-[600] text-cream text-sm">{counselor.name}</p>
-            <p className="text-cream/80 text-xs">{counselor.credentials}</p>
+            <p className="text-cream text-xs">{counselor.credentials}</p>
           </div>
           {step > 0 && service && (
             <div className="ml-auto text-right">
               <p className="text-cream font-[600] text-sm">{service.name}</p>
-              <p className="text-cream/80 text-xs">{service.duration} min · UGX {service.price.toLocaleString()}</p>
+              <p className="text-cream text-xs">{service.duration} min · UGX {service.price.toLocaleString()}</p>
             </div>
           )}
         </div>
@@ -142,8 +141,8 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
         {/* Step 0: Service */}
         {step === 0 && (
           <div>
-            <h2 className="font-display text-3xl font-[400] text-slate mb-2">Choose a service</h2>
-            <p className="text-slateM text-sm mb-8">Select the type of session that best fits your needs.</p>
+            <h2 className="font-display text-3xl md:text-4xl font-[700] text-center text-slate mb-2">Choose a service</h2>
+            <p className="text-slateM text-sm mb-8 text-center">Select the type of session that best fits your needs.</p>
             <div className="space-y-3">
               {services.map((s, i) => (
                 <button
@@ -153,8 +152,11 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                     selectedService === i ? "border-sage bg-sage text-cream shadow-[0_8px_24px_-8px_rgba(78,106,40,0.5)] [&_.sub]:text-cream/85" : "border-border bg-cream hover:border-sageMid"
                   }`}
                 >
-                  <div>
-                    <p className={`font-[600] text-sm ${selectedService === i ? "text-cream" : "text-slate"}`}>{s.name}</p>
+                  <span className={`mr-4 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full ${selectedService === i ? "bg-cream/25" : "bg-sageL text-sage"}`}>
+                    <Icon name={serviceIcons[i]} className="h-5 w-5" />
+                  </span>
+                  <div className="flex-1">
+                    <p className={`font-[700] ${selectedService === i ? "text-cream" : "text-slate"}`}>{s.name}</p>
                     <p className="sub text-slateM text-xs mt-1 leading-relaxed">{s.desc}</p>
                     <p className="sub text-slateL text-xs mt-2">{s.duration} minutes</p>
                   </div>
@@ -179,8 +181,8 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
         {/* Step 1: Date & Time */}
         {step === 1 && (
           <div>
-            <h2 className="font-display text-3xl font-[400] text-slate mb-2">Choose a date and time</h2>
-            <p className="text-slateM text-sm mb-8">All times shown in your local timezone.</p>
+            <h2 className="font-display text-3xl md:text-4xl font-[700] text-center text-slate mb-2">Choose a date and time</h2>
+            <p className="text-slateM text-sm mb-8 text-center">All times shown in your local timezone.</p>
             <div className="bg-sand border border-border rounded-[12px] p-6 mb-6">
               <h3 className="font-[600] text-slate mb-5">
                 {fmtRange(days)}
@@ -199,7 +201,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                       disabled={unavailable}
                       aria-label={`${fmtLong(date)}${unavailable ? ", unavailable" : ""}`}
                       aria-pressed={isSelected}
-                      className={`aspect-square rounded-lg text-sm font-[500] transition-all ${
+                      className={`aspect-square rounded-full text-sm font-[600] transition-all ${
                         isSelected ? "bg-sage text-cream" :
                         unavailable ? "text-slateXL line-through decoration-slateXL/50" :
                         "hover:bg-sageL hover:text-sageD text-slate"
@@ -251,8 +253,8 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
         {/* Step 2: Session Type */}
         {step === 2 && (
           <div>
-            <h2 className="font-display text-3xl font-[400] text-slate mb-2">How would you like to meet?</h2>
-            <p className="text-slateM text-sm mb-8">Choose the format that feels most comfortable for you.</p>
+            <h2 className="font-display text-3xl md:text-4xl font-[700] text-center text-slate mb-2">How would you like to meet?</h2>
+            <p className="text-slateM text-sm mb-8 text-center">Choose the format that feels most comfortable for you.</p>
             <div className="space-y-3 mb-8">
               {["Video", "Audio", "In Person"].map((s) => (
                 <button
@@ -262,8 +264,11 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                     sessionType === s ? "border-sage bg-sage text-cream shadow-[0_8px_24px_-8px_rgba(78,106,40,0.5)] [&_.sub]:text-cream/85" : "border-border bg-cream hover:border-sageMid"
                   }`}
                 >
+                  <span className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full ${sessionType === s ? "bg-cream/25" : "bg-sageL text-sage"}`}>
+                    <Icon name={s === "Video" ? "video" : s === "Audio" ? "audio" : "pin"} className="h-5 w-5" />
+                  </span>
                   <div className="text-left flex-1">
-                    <p className={`font-[600] text-sm ${sessionType === s ? "text-cream" : "text-slate"}`}>{s} Session</p>
+                    <p className={`font-[700] ${sessionType === s ? "text-cream" : "text-slate"}`}>{s} Session</p>
                     <p className="sub text-slateM text-xs mt-1">
                       {s === "Video" ? "See and hear your counselor via a secure video link" :
                        s === "Audio" ? "Voice call only, no camera needed. Fully private." :
@@ -289,8 +294,8 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
         {/* Step 3: Intake */}
         {step === 3 && (
           <div>
-            <h2 className="font-display text-3xl font-[400] text-slate mb-2">A little about you</h2>
-            <p className="text-slateM text-sm mb-8">This helps your counselor prepare for your first session. You only need to share what feels comfortable.</p>
+            <h2 className="font-display text-3xl md:text-4xl font-[700] text-center text-slate mb-2">A little about you</h2>
+            <p className="text-slateM text-sm mb-8 text-center">This helps your counselor prepare for your first session. You only need to share what feels comfortable.</p>
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-[500] text-slate mb-2">What would you like help with?</label>
@@ -331,10 +336,10 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
         {/* Step 4: Payment */}
         {step === 4 && (
           <div>
-            <h2 className="font-display text-3xl font-[400] text-slate mb-8">Review and pay</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-[700] text-center text-slate mb-8">Review and pay</h2>
 
-            <div className="bg-sand border border-border rounded-[12px] p-6 mb-6">
-              <h3 className="font-[600] text-slate mb-4">Appointment Summary</h3>
+            <div className="light-scope mb-6 rounded-[12px] bg-slate p-6 text-cream">
+              <h3 className="mb-4 font-[700]">Appointment Summary</h3>
               <div className="space-y-3 text-sm">
                 {[
                   ["Counselor", counselor.name],
@@ -345,13 +350,13 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                   ["Format", `${sessionType} Session`],
                 ].map(([label, value]) => (
                   <div key={label} className="flex justify-between">
-                    <span className="text-slateM">{label}</span>
-                    <span className="font-[500] text-slate">{value}</span>
+                    <span className="opacity-75">{label}</span>
+                    <span className="font-[600]">{value}</span>
                   </div>
                 ))}
-                <div className="border-t border-border pt-3 flex justify-between">
-                  <span className="font-[600] text-slate">Total</span>
-                  <span className="font-[700] text-sage text-lg">UGX {service.price.toLocaleString()}</span>
+                <div className="border-t border-cream/20 pt-3 flex items-baseline justify-between">
+                  <span className="font-[600]">Total</span>
+                  <span className="font-display text-2xl font-[700] text-sun">UGX {service.price.toLocaleString()}</span>
                 </div>
               </div>
             </div>
