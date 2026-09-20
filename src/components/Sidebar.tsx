@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Page } from "@/lib/nav";
+import ThemeToggle from "./ThemeToggle";
 
 interface SidebarProps {
   navigate: (page: Page) => void;
@@ -65,6 +66,7 @@ export default function Sidebar({ navigate, currentPage, onLogout }: SidebarProp
             <span className="w-2 h-2 rounded-full bg-crisis animate-pulse flex-shrink-0"></span>
             Crisis Support
           </button>
+          <ThemeToggle labelled />
           <button
             onClick={onLogout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-[500] text-slateL hover:bg-sand hover:text-slateM transition-all"
@@ -78,7 +80,7 @@ export default function Sidebar({ navigate, currentPage, onLogout }: SidebarProp
       {/* Mobile bottom nav */}
       {moreOpen && <div className="lg:hidden fixed inset-0 z-30" onClick={() => setMoreOpen(false)} aria-hidden="true" />}
       {moreOpen && (
-        <div className="lg:hidden fixed bottom-[68px] right-3 z-40 w-56 rounded-[12px] border border-border bg-cream p-2 shadow-[0_12px_40px_-8px_rgba(60,32,16,0.22)] page-enter">
+        <div className="lg:hidden fixed bottom-[84px] right-3 z-40 w-56 rounded-[12px] border border-border bg-cream p-2 shadow-[0_12px_40px_-8px_rgba(60,32,16,0.22)] page-enter">
           {[
             { label: "Profile", page: "profile" as Page, icon: UserIcon },
             { label: "Resources", page: "resources" as Page, icon: BookIcon },
@@ -94,13 +96,14 @@ export default function Sidebar({ navigate, currentPage, onLogout }: SidebarProp
             <span className="ml-1.5 mr-1 h-2 w-2 rounded-full bg-crisis"></span>
             Crisis Support
           </button>
+          <ThemeToggle labelled className="!py-3" />
           <button onClick={onLogout} className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-[500] text-slateM hover:bg-sand">
             <LogOutIcon />
             Sign Out
           </button>
         </div>
       )}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-cream border-t border-border px-2 py-2 flex items-center justify-around" aria-label="Main">
+      <nav className="lg:hidden fixed bottom-3 left-3 right-3 z-40 rounded-full bg-sand border border-border px-2 py-1.5 flex items-center justify-around" aria-label="Main">
         {[
           { label: "Home", page: "dashboard" as Page, icon: HomeIcon },
           { label: "Appts", page: "appointments" as Page, icon: CalIcon },
@@ -113,8 +116,8 @@ export default function Sidebar({ navigate, currentPage, onLogout }: SidebarProp
               key={label}
               onClick={() => { setMoreOpen(false); navigate(page); }}
               aria-current={active ? "page" : undefined}
-              className={`relative flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-all ${
-                active ? "text-sage" : "text-slateL"
+              className={`relative flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-full transition-all ${
+                active ? "bg-sageL text-sage" : "text-slateL"
               }`}
             >
               <Icon active={active} />
@@ -126,7 +129,7 @@ export default function Sidebar({ navigate, currentPage, onLogout }: SidebarProp
         <button
           onClick={() => setMoreOpen(!moreOpen)}
           aria-expanded={moreOpen}
-          className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-all ${moreActive || moreOpen ? "text-sage" : "text-slateL"}`}
+          className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-full transition-all ${moreActive || moreOpen ? "bg-sageL text-sage" : "text-slateL"}`}
         >
           <UserIcon active={moreActive || moreOpen} />
           <span className="text-[10px] font-[500]">More</span>

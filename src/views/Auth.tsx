@@ -4,6 +4,7 @@ import { useId, useState } from "react";
 import type { Page, UserRole } from "@/lib/nav";
 import Icon from "../components/Icon";
 import { toast } from "../components/Toast";
+import ThemeToggle from "../components/ThemeToggle";
 
 type AuthMode = "login" | "register" | "otp" | "onboarding-about" | "onboarding-needs" | "onboarding-prefs" | "forgot-password" | "forgot-sent";
 
@@ -21,7 +22,7 @@ interface AuthProps {
 }
 
 const primaryBtn =
-  "w-full bg-slate hover:bg-[#4b2b18] text-cream font-[600] py-3.5 rounded-xl transition-colors disabled:opacity-60 disabled:hover:bg-slate";
+  "w-full bg-slate hover:bg-slateM text-cream font-[600] py-3.5 rounded-xl transition-colors disabled:opacity-60 disabled:hover:bg-slate";
 const secondaryBtn = "px-5 py-3 text-sm font-[500] text-slateM border border-border rounded-xl hover:bg-sand transition-colors";
 
 const emailOk = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
@@ -420,7 +421,7 @@ export default function Auth({ navigate, onAuthenticate, initialMode = "login" }
 function AuthShell({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-cream flex">
-      <div className="hidden lg:flex flex-1 relative">
+      <div className="light-scope hidden lg:flex flex-1 relative">
         <div
           className="absolute inset-0"
           style={{
@@ -438,7 +439,8 @@ function AuthShell({ title, subtitle, children }: { title: string; subtitle: str
         </div>
       </div>
 
-      <div className="w-full lg:w-[480px] flex flex-col justify-center px-6 sm:px-8 py-10 overflow-y-auto">
+      <div className="relative w-full lg:w-[480px] flex flex-col justify-center px-6 sm:px-8 py-10 overflow-y-auto">
+        <div className="absolute right-4 top-4"><ThemeToggle /></div>
         <div className="max-w-sm mx-auto w-full">
           <a href="/" className="mb-8 inline-block font-display text-2xl font-[500] text-slate">
             Serene<span className="text-sage">Mind</span>

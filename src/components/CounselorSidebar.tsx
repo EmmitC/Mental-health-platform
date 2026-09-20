@@ -1,6 +1,7 @@
 "use client";
 
 import type { Page } from "@/lib/nav";
+import ThemeToggle from "./ThemeToggle";
 
 interface CounselorSidebarProps {
   navigate: (page: Page) => void;
@@ -21,7 +22,7 @@ export default function CounselorSidebar({ navigate, currentPage, onLogout }: Co
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-60 min-h-screen bg-slate sticky top-0 h-screen overflow-y-auto">
+      <aside className="light-scope hidden lg:flex flex-col w-60 min-h-screen bg-slate sticky top-0 h-screen overflow-y-auto">
         <div className="p-5 border-b border-cream/10">
           <button onClick={() => navigate("home")} className="font-display text-xl font-[500] text-cream">
             Serene<span className="text-sageMid">Mind</span>
@@ -74,6 +75,7 @@ export default function CounselorSidebar({ navigate, currentPage, onLogout }: Co
             <span className="w-2 h-2 rounded-full bg-crisis animate-pulse flex-shrink-0"></span>
             Crisis Support
           </button>
+          <ThemeToggle labelled onDark />
           <button
             onClick={onLogout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-[500] text-cream/60 hover:text-cream/70 hover:bg-cream/5 transition-all"
@@ -85,7 +87,7 @@ export default function CounselorSidebar({ navigate, currentPage, onLogout }: Co
       </aside>
 
       {/* Mobile bottom nav */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate border-t border-cream/10 px-2 py-2 flex items-center justify-around">
+      <nav className="light-scope lg:hidden fixed bottom-3 left-3 right-3 z-40 rounded-full bg-slate border border-cream/10 px-2 py-1.5 flex items-center justify-around">
         {[
           { label: "Home", page: "counselor-dashboard" as Page, icon: HomeIcon },
           { label: "Calendar", page: "counselor-calendar" as Page, icon: CalIcon },
@@ -108,6 +110,7 @@ export default function CounselorSidebar({ navigate, currentPage, onLogout }: Co
             </button>
           );
         })}
+        <ThemeToggle onDark tab />
         <button onClick={onLogout} className="flex flex-col items-center gap-0.5 px-1.5 py-1 rounded-lg text-cream/60">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
           <span className="text-[10px] font-[500]">Sign out</span>

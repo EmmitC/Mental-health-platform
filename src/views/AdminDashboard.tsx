@@ -28,7 +28,7 @@ export default function AdminDashboard({ navigate }: AdminDashboardProps) {
   return (
     <div className="min-h-screen bg-cream pb-20 lg:pb-8">
       {/* Header */}
-      <div className="bg-slate px-6 py-8">
+      <div className="light-scope bg-slate px-6 py-8">
         <p className="text-cream/60 text-xs font-[600] uppercase tracking-widest mb-1">Admin</p>
         <h1 className="font-display text-3xl font-[400] text-cream">Platform Overview</h1>
         <p className="text-cream/60 text-sm mt-1">Wednesday, 20 August 2026</p>

@@ -5,6 +5,7 @@ import { counselors } from "../data/mock";
 import type { Page } from "@/lib/nav";
 import Icon from "../components/Icon";
 import { buildDays, calDays, fmtLong, fmtRange, leadingBlanks } from "../data/calendar";
+import SegmentedTabs from "../components/SegmentedTabs";
 
 interface CounselorProfileProps {
   navigate: (page: Page, params?: { counselorId?: string }) => void;
@@ -89,19 +90,7 @@ export default function CounselorProfile({ navigate, counselorId }: CounselorPro
           {/* Main Content */}
           <div className="flex-1 min-w-0">
             {/* Tabs */}
-            <div className="flex gap-1 mb-8 border-b border-border overflow-x-auto pb-px">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2.5 text-sm font-[500] whitespace-nowrap border-b-2 -mb-px transition-all ${
-                    activeTab === tab ? "border-sage text-sage" : "border-transparent text-slateM hover:text-slate"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
+            <SegmentedTabs label="Profile sections" className="mb-8" options={tabs} value={activeTab as (typeof tabs)[number]} onChange={setActiveTab} />
 
             {activeTab === "About" && (
               <div className="space-y-6">

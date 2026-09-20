@@ -37,10 +37,10 @@ export default function CounselorDashboard({ navigate }: CounselorDashboardProps
   return (
     <div className="min-h-screen bg-cream pb-20 lg:pb-8">
       {/* Header */}
-      <div className="bg-slate px-6 py-8 lg:py-10">
-        <p className="text-cream/50 text-sm mb-1">{getGreeting()}</p>
+      <div className="light-scope bg-slate px-6 py-8 lg:py-10">
+        <p className="text-cream/70 text-sm mb-1">{getGreeting()}</p>
         <h1 className="font-display text-3xl font-[400] text-cream">Dr. Grace Nakamya</h1>
-        <p className="text-cream/50 text-sm mt-1">Wednesday, 20 August 2026</p>
+        <p className="text-cream/70 text-sm mt-1">Wednesday, 20 August 2026</p>
       </div>
 
       <div className="max-w-4xl mx-auto px-5 lg:px-8 py-8 space-y-8">

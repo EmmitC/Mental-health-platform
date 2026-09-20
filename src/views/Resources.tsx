@@ -53,7 +53,7 @@ export default function Resources({ navigate }: ResourcesProps) {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search mental health resources..."
-              className="w-full pl-11 pr-4 py-3 border border-border rounded-xl text-sm bg-cream focus:border-sage outline-none transition-colors"
+              className="w-full pl-11 pr-4 py-3 border border-border rounded-full text-sm bg-sand focus:border-sage outline-none transition-colors"
             />
           </div>
         </div>

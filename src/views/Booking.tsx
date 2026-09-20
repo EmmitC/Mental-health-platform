@@ -171,7 +171,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                 </button>
               ))}
             </div>
-            <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 mt-8 w-full bg-slate hover:bg-[#4b2b18] text-cream font-[600] py-3.5 rounded-xl transition-colors">
+            <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 mt-8 w-full bg-slate hover:bg-slateM text-cream font-[600] py-3.5 rounded-xl transition-colors">
               Continue <span aria-hidden="true">→</span></button>
           </div>
         )}
@@ -242,7 +242,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
 
             <div className="flex gap-3">
               <button onClick={prevStep} disabled={paying} className="px-6 py-3 border border-border rounded-xl text-sm font-[500] text-slateM hover:bg-sand">Back</button>
-              <button onClick={nextStep} disabled={!selectedDate || !selectedTime} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-[#4b2b18] text-cream font-[600] py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+              <button onClick={nextStep} disabled={!selectedDate || !selectedTime} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-slateM text-cream font-[600] py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
                 Continue <span aria-hidden="true">→</span></button>
             </div>
           </div>
@@ -281,7 +281,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
             </div>
             <div className="flex gap-3">
               <button onClick={prevStep} disabled={paying} className="px-6 py-3 border border-border rounded-xl text-sm font-[500] text-slateM hover:bg-sand">Back</button>
-              <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-[#4b2b18] text-cream font-[600] py-3 rounded-xl transition-colors">Continue <span aria-hidden="true">→</span></button>
+              <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-slateM text-cream font-[600] py-3 rounded-xl transition-colors">Continue <span aria-hidden="true">→</span></button>
             </div>
           </div>
         )}
@@ -323,7 +323,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
             </div>
             <div className="flex gap-3 mt-8">
               <button onClick={prevStep} disabled={paying} className="px-6 py-3 border border-border rounded-xl text-sm font-[500] text-slateM hover:bg-sand">Back</button>
-              <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-[#4b2b18] text-cream font-[600] py-3 rounded-xl transition-colors">Continue <span aria-hidden="true">→</span></button>
+              <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-slateM text-cream font-[600] py-3 rounded-xl transition-colors">Continue <span aria-hidden="true">→</span></button>
             </div>
           </div>
         )}

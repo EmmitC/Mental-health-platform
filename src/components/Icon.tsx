@@ -26,6 +26,8 @@ const paths: Record<string, string> = {
   chevR: "M9 6l6 6-6 6",
   calendar: "M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zm-1 5h16M8 3v4m8-4v4",
   phone: "M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z",
+  sun: "M12 16a4 4 0 100-8 4 4 0 000 8zm0-13v2m0 14v2M3 12h2m14 0h2M5.6 5.6L7 7m10 10l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4",
+  moon: "M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z",
   eye: "M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zm10 3a3 3 0 100-6 3 3 0 000 6z",
   eyeOff: "M3 3l18 18M10.6 6.1A9.7 9.7 0 0112 6c6.5 0 10 6 10 6a17 17 0 01-3.2 3.9M6.6 7.6A16.6 16.6 0 002 12s3.5 6 10 6c1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 004.2 4.2",
 };
@@ -49,8 +51,15 @@ export default function Icon({ name, className = "h-5 w-5" }: { name: IconName; 
   );
 }
 
-/** Mood faces 0 (very low) … 4 (great) as line SVGs, replacing emoji. */
-export function MoodFace({ level, className = "h-8 w-8" }: { level: number; className?: string }) {
+/** Kit mood colours: very low (lilac), low (orange), okay (taupe), good (yellow), great (green). */
+export const moodColors = ["#B9A6E8", "#F58A52", "#C9B8A4", "#FFCF5C", "#9ABB5C"];
+
+/**
+ * Mood faces 0 (very low) … 4 (great) as line SVGs. With `filled` the face
+ * takes the kit's mood colour with dark features (same in light and dark).
+ */
+export function MoodFace({ level, className = "h-8 w-8", filled = false }: { level: number; className?: string; filled?: boolean }) {
+  const i = Math.max(0, Math.min(4, level));
   const mouths = [
     "M8.5 16.5c1-1.2 2.2-1.8 3.5-1.8s2.5.6 3.5 1.8",
     "M9 16c.9-.7 1.9-1 3-1s2.1.3 3 1",
@@ -58,11 +67,12 @@ export function MoodFace({ level, className = "h-8 w-8" }: { level: number; clas
     "M9 14.5c.9.8 1.9 1.2 3 1.2s2.1-.4 3-1.2",
     "M8 14c1 2 2.4 3 4 3s3-1 4-3z",
   ];
+  const ink = filled ? "#3C2010" : "currentColor";
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <circle cx="12" cy="12" r="9.5" />
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke={ink} strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="12" cy="12" r="9.5" fill={filled ? moodColors[i] : "none"} />
       <path d="M9 9.5v.01M15 9.5v.01" strokeWidth={2.4} />
-      <path d={mouths[Math.max(0, Math.min(4, level))]} />
+      <path d={mouths[i]} />
     </svg>
   );
 }

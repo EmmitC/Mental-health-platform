@@ -158,3 +158,98 @@ textarea.rounded-2xl {
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * ── Dark mode ────────────────────────────────────────────────────────────────
+ * Token-level: every utility reads var(--color-*), so redefining the tokens
+ * re-themes the whole app. Derived from the Freud kit's dark screens: deep
+ * chocolate base, warmer/lighter surfaces for elevation (no shadows), softened
+ * borders, and a brighter, slightly desaturated green so it reads on dark.
+ * Naming stays semantic: "cream" = base surface, "slate" = primary text.
+ */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-cream:      #221610;
+  --color-sand:       #2E1F16;
+  --color-sandDark:   #402E22;
+  --color-border:     #3F2D21;
+  --color-borderDark: #5A4231;
+
+  --color-slate:  #F6ECDD;
+  --color-slateM: #D9C3AC;
+  --color-slateL: #BDA288;
+  --color-slateXL:#AB9179;
+
+  --color-sage:    #A6C766;
+  --color-sageD:   #BFDB86;
+  --color-sageL:   #2F3B1C;
+  --color-sageMid: #7D9B45;
+
+  --color-terra:    #F29B62;
+  --color-terraD:   #F8B489;
+  --color-terraL:   #3D2515;
+  --color-terraMid: #C4703C;
+
+  --color-crisis:   #FF8070;
+  --color-crisisD:  #FFA396;
+  --color-crisisL:  #3E1B16;
+  --color-success:  #A6C766;
+  --color-successL: #2F3B1C;
+  --color-amber:    #EDBA52;
+  --color-amberL:   #3A2C12;
+}
+
+/* Elevation in dark comes from lighter surfaces, not shadows (guide §6). */
+:root[data-theme="dark"] [class*="shadow-["],
+:root[data-theme="dark"] .shadow {
+  box-shadow: none !important;
+}
+:root[data-theme="dark"] input:focus-visible,
+:root[data-theme="dark"] textarea:focus-visible,
+:root[data-theme="dark"] select:focus-visible {
+  box-shadow: 0 0 0 3px rgba(166, 199, 102, 0.28);
+}
+:root[data-theme="dark"] img { filter: brightness(0.92); }
+
+/*
+ * .light-scope: surfaces that are dark-by-design in BOTH themes (footer,
+ * portal sidebars, session room, photo heroes, colour-blocked kit cards).
+ * It restores the light-theme tokens locally so their cream-on-brown or
+ * brown-on-orange pairings never invert.
+ */
+.light-scope {
+  color-scheme: light;
+  --color-cream:      #FAF3E8;
+  --color-sand:       #EEE4D2;
+  --color-sandDark:   #DDD0B8;
+  --color-border:     #CCB898;
+  --color-borderDark: #B49870;
+  --color-slate:  #3C2010;
+  --color-slateM: #7A4828;
+  --color-slateL: #8A5A36;
+  --color-slateXL:#A0714C;
+  --color-sage:    #4E6A28;
+  --color-sageD:   #3C5420;
+  --color-sageL:   #E4EFCF;
+  --color-sageMid: #9ABB5C;
+  --color-terra:    #A85200;
+  --color-terraD:   #8A4200;
+  --color-terraL:   #FFF0E4;
+  --color-terraMid: #ECA068;
+  --color-crisis:   #C02818;
+  --color-crisisD:  #9C1F12;
+  --color-crisisL:  #FDECEA;
+  --color-success:  #4E6A28;
+  --color-successL: #E4EFCF;
+  --color-amber:    #8A6000;
+  --color-amberL:   #FEF6E4;
+}
+:root[data-theme="dark"] .light-scope img { filter: none; }
+
+/* Smooth theme change, but never on first paint or for reduced-motion users. */
+html.theme-ready body,
+html.theme-ready .bg-cream,
+html.theme-ready .bg-sand {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

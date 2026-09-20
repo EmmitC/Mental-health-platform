@@ -5,6 +5,7 @@ import { wellnessGoals, moodHistory } from "../data/mock";
 import type { Page } from "@/lib/nav";
 import { MoodFace } from "../components/Icon";
 import { toast } from "../components/Toast";
+import SegmentedTabs from "../components/SegmentedTabs";
 
 interface WellnessProps {
   navigate: (page: Page) => void;
@@ -54,19 +55,7 @@ export default function Wellness({ navigate }: WellnessProps) {
         <h1 className="font-display text-3xl md:text-4xl font-[400] text-slate mb-8">Wellness</h1>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-border mb-8 overflow-x-auto">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-4 py-2.5 text-sm font-[500] whitespace-nowrap border-b-2 -mb-px transition-all ${
-                tab === t ? "border-sage text-sage" : "border-transparent text-slateM hover:text-slate"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs label="Wellness sections" className="mb-8" options={tabs} value={tab} onChange={setTab} />
 
         {/* Check-in Tab */}
         {tab === "Check-in" && (
@@ -97,7 +86,7 @@ export default function Wellness({ navigate }: WellnessProps) {
                             : "hover:bg-sand hover:scale-105"
                         }`}
                       >
-                        <MoodFace level={i} className={`h-9 w-9 transition-colors ${selectedMood === i ? "text-sage" : "text-slateL"}`} />
+                        <MoodFace level={i} filled={selectedMood === i} className="h-9 w-9 text-slateL" />
                         <span className="text-[10px] text-slateM font-[500]">{label}</span>
                       </button>
                     ))}
@@ -289,7 +278,7 @@ export default function Wellness({ navigate }: WellnessProps) {
                           aria-pressed={entryMood === i}
                           className={`rounded-xl p-2 transition-all ${entryMood === i ? "bg-sageL text-sage ring-2 ring-sage" : "text-slateL hover:bg-sand"}`}
                         >
-                          <MoodFace level={i} className="h-7 w-7" />
+                          <MoodFace level={i} filled={entryMood === i} className="h-7 w-7" />
                         </button>
                       ))}
                     </div>
@@ -335,7 +324,7 @@ export default function Wellness({ navigate }: WellnessProps) {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <MoodFace level={mood} className="h-6 w-6 text-sage" />
+                        <MoodFace level={mood} filled className="h-7 w-7" />
                         <span className="text-sm font-[500] text-slateM">{date}</span>
                       </div>
                       <span className="text-slateL group-hover:text-sage text-sm transition-colors">→</span>

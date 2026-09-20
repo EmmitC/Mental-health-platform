@@ -65,7 +65,7 @@ export default function Home({ navigate }: HomeProps) {
   return (
     <div className="bg-cream">
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <section className="light-scope relative min-h-[92vh] flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-slate/50"
           style={{
@@ -150,7 +150,7 @@ export default function Home({ navigate }: HomeProps) {
                 whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.98 }}
                 transition={springs.responsive}
-                className={`group flex h-full w-full flex-col rounded-[12px] p-6 text-left transition-colors ${tones[tone]}`}
+                className={`light-scope group flex h-full w-full flex-col rounded-[12px] p-6 text-left transition-colors ${tones[tone]}`}
               >
                 <span className="mb-10 flex h-11 w-11 items-center justify-center rounded-full bg-cream/25">
                   <Icon name={icon} className="h-5 w-5" />
@@ -268,7 +268,7 @@ export default function Home({ navigate }: HomeProps) {
             { step: "04", title: "Begin your journey", desc: "Attend your session via video, audio, or in person, and keep moving forward." },
           ].map(({ step, title, desc }) => (
             <div key={step} className="relative">
-              <p className="font-display text-6xl font-[300] text-sandDark mb-4">{step}</p>
+              <p className="font-display text-6xl font-[300] text-slateXL mb-4">{step}</p>
               <h3 className="font-[600] text-slate mb-2">{title}</h3>
               <p className="text-slateM text-sm leading-relaxed">{desc}</p>
             </div>
@@ -295,7 +295,7 @@ export default function Home({ navigate }: HomeProps) {
         </Reveal>
         <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <StaggerItem className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-[12px] bg-sage p-6 text-cream">
+            <div className="flex h-full flex-col justify-between light-scope rounded-[12px] bg-sage p-6 text-cream">
               <p className="text-sm font-[600] opacity-90">Wellbeing score</p>
               <div className="my-6 flex items-center gap-5">
                 <ProgressRing value={80} size={104}>
@@ -307,7 +307,7 @@ export default function Home({ navigate }: HomeProps) {
             </div>
           </StaggerItem>
           <StaggerItem className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-[12px] bg-ember p-6 text-slate">
+            <div className="flex h-full flex-col justify-between light-scope rounded-[12px] bg-ember p-6 text-slate">
               <p className="text-sm font-[600]">This week's mood</p>
               <div className="my-6 flex h-24 items-end gap-2" role="img" aria-label="Mood rising across the week">
                 {[35, 55, 40, 70, 90, 75, 60].map((h, i) => (
@@ -325,12 +325,12 @@ export default function Home({ navigate }: HomeProps) {
             </div>
           </StaggerItem>
           <StaggerItem className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-[12px] bg-sun p-6 text-slate">
+            <div className="flex h-full flex-col justify-between light-scope rounded-[12px] bg-sun p-6 text-slate">
               <p className="text-sm font-[600]">How are you feeling?</p>
               <div className="my-6 flex justify-between text-slate">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <motion.span key={i} whileHover={{ y: -4, scale: 1.1 }} transition={springs.snappy} className="inline-flex">
-                    <MoodFace level={i} className="h-9 w-9" />
+                    <MoodFace level={i} filled className="h-9 w-9" />
                   </motion.span>
                 ))}
               </div>
@@ -398,7 +398,7 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Safety Section */}
-      <section className="bg-slate py-16">
+      <section className="light-scope bg-slate py-16">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-[400] text-cream mb-4">
             Need immediate help?

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { Page } from "@/lib/nav";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavProps {
   navigate: (page: Page) => void;
@@ -55,6 +56,7 @@ export default function Nav({ navigate, isAuthenticated, onLogin, onLogout, curr
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <button
             onClick={() => navigate("crisis")}
             className="text-sm font-[500] text-crisis hover:text-crisisD flex items-center gap-1.5 transition-colors"
@@ -135,6 +137,7 @@ export default function Nav({ navigate, isAuthenticated, onLogin, onLogout, curr
               {label}
             </button>
           ))}
+          <ThemeToggle labelled />
           <button
             onClick={() => { navigate("crisis"); setMobileOpen(false); }}
             className="block w-full text-left py-2.5 px-3 text-sm font-[600] text-crisis hover:bg-crisisL rounded-lg transition-all"

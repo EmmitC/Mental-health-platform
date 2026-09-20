@@ -4,6 +4,8 @@ import { useState } from "react";
 import { appointments, resources, wellnessGoals, moodHistory } from "../data/mock";
 import type { Page } from "@/lib/nav";
 import Icon, { MoodFace } from "../components/Icon";
+import ProgressRing from "../components/animation/ProgressRing";
+import Counter from "../components/animation/Counter";
 import { toast } from "../components/Toast";
 
 interface DashboardProps {
@@ -30,9 +32,9 @@ export default function Dashboard({ navigate }: DashboardProps) {
 
         {/* Check-in card */}
         {!checkedIn ? (
-          <div className="bg-ember rounded-[12px] p-6 mb-6">
+          <div className="light-scope bg-ember rounded-[12px] p-6 mb-6">
             <h2 className="font-display text-2xl font-[700] text-slate mb-1">How are you feeling today?</h2>
-            <p className="text-slate/80 text-sm mb-5">A quick check-in helps you track your wellbeing over time.</p>
+            <p className="text-slate text-sm mb-5">A quick check-in helps you track your wellbeing over time.</p>
             <div className="flex gap-3 mb-5">
               {moodLabels.map((label, i) => (
                 <button
@@ -41,17 +43,17 @@ export default function Dashboard({ navigate }: DashboardProps) {
                   aria-label={label}
                   aria-pressed={selectedMood === i}
                   className={`p-2 rounded-xl transition-all ${
-                    selectedMood === i ? "bg-slate text-cream scale-110" : "text-slate/70 hover:bg-cream/40 hover:text-slate"
+                    selectedMood === i ? "bg-cream/70 scale-110" : "text-slate/70 hover:bg-cream/40 hover:text-slate"
                   }`}
                 >
-                  <MoodFace level={i} className="h-9 w-9" />
+                  <MoodFace level={i} className="h-9 w-9" filled={selectedMood === i} />
                 </button>
               ))}
             </div>
             {selectedMood !== null && (
               <button
                 onClick={() => setCheckedIn(true)}
-                className="bg-slate hover:bg-[#4b2b18] text-cream font-[600] px-6 py-3 rounded-xl text-sm transition-colors"
+                className="bg-slate hover:bg-slateM text-cream font-[600] px-6 py-3 rounded-xl text-sm transition-colors"
               >
                 Log Check-in
               </button>
@@ -66,6 +68,24 @@ export default function Dashboard({ navigate }: DashboardProps) {
             </div>
           </div>
         )}
+
+        {/* Metrics: kit-style colour-blocked cards */}
+        <div className="mb-6 grid grid-cols-2 gap-4">
+          <div className="light-scope flex flex-col justify-between rounded-[12px] bg-sage p-5 text-cream">
+            <p className="text-sm font-[600]">Wellbeing score</p>
+            <div className="my-4">
+              <ProgressRing value={80} size={88} stroke={9}>
+                <span className="font-display text-2xl font-[700]"><Counter value={80} /></span>
+              </ProgressRing>
+            </div>
+            <p className="text-xs font-[500] opacity-90">Healthy, up 8 this month</p>
+          </div>
+          <div className="light-scope flex flex-col justify-between rounded-[12px] bg-slate p-5 text-cream">
+            <p className="text-sm font-[600]">Check-in streak</p>
+            <p className="my-4 font-display text-5xl font-[700] leading-none"><Counter value={7} /></p>
+            <p className="text-xs font-[500] opacity-80">days in a row. Keep it up.</p>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Upcoming Appointment */}
@@ -117,10 +137,10 @@ export default function Dashboard({ navigate }: DashboardProps) {
             </div>
 
             {/* Mood Chart */}
-            <div className="bg-sun rounded-[12px] p-6">
+            <div className="light-scope bg-sun rounded-[12px] p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-[700] text-slate">Your Week</h2>
-                <button onClick={() => navigate("wellness")} className="text-sage text-xs font-[500] hover:underline">View wellness</button>
+                <button onClick={() => navigate("wellness")} className="text-slate text-xs font-[600] underline">View wellness</button>
               </div>
               <div className="flex gap-2 h-28" role="img" aria-label={`Mood this week, scored 1 to 5: ${moodHistory.map((m) => `${m.day} ${m.score}`).join(", ")}`}>
                 <div className="flex flex-col justify-between pb-5 text-[10px] text-slateM tabular-nums" aria-hidden="true">
@@ -139,14 +159,14 @@ export default function Dashboard({ navigate }: DashboardProps) {
                   </div>
                 ))}
               </div>
-              <div className="mt-5 flex gap-6 border-t border-border pt-4">
+              <div className="mt-5 flex gap-6 border-t border-slate/25 pt-4">
                 <div>
                   <p className="font-display text-xl font-[300] text-slate">3</p>
-                  <p className="text-xs text-slateL">Check-ins this week</p>
+                  <p className="text-xs text-slate/80">Check-ins this week</p>
                 </div>
                 <div>
                   <p className="font-display text-xl font-[300] text-slate">7</p>
-                  <p className="text-xs text-slateL">Day streak</p>
+                  <p className="text-xs text-slate/80">Day streak</p>
                 </div>
               </div>
             </div>

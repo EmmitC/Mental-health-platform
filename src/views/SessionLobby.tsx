@@ -42,7 +42,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
 
   if (joined) {
     return (
-      <div className="min-h-screen bg-slate flex flex-col">
+      <div className="light-scope min-h-screen bg-slate flex flex-col">
         {/* Minimal session UI */}
         <div className="flex-1 flex items-center justify-center bg-slate relative">
           <div className="absolute inset-0 flex items-center justify-center">
@@ -106,7 +106,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
   }
 
   return (
-    <div className="min-h-screen bg-slate flex items-center justify-center px-5">
+    <div className="light-scope min-h-screen bg-slate flex items-center justify-center px-5">
       <div className="max-w-md w-full">
         {/* Counselor info */}
         <div className="text-center mb-10">
@@ -151,7 +151,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
               }`}>
                 {micOk && <Icon name="check" className="h-3 w-3" />}
               </span>
-              <span className={`text-sm transition-colors ${micOk ? "text-cream" : "text-cream/50"}`}>
+              <span className={`text-sm transition-colors ${micOk ? "text-cream" : "text-cream/70"}`}>
                 Microphone working
               </span>
             </button>
@@ -164,7 +164,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
               }`}>
                 {camOk && <Icon name="check" className="h-3 w-3" />}
               </span>
-              <span className={`text-sm transition-colors ${camOk ? "text-cream" : "text-cream/50"}`}>
+              <span className={`text-sm transition-colors ${camOk ? "text-cream" : "text-cream/70"}`}>
                 Camera working
               </span>
             </button>

@@ -5,6 +5,7 @@ import { appointments, type Appointment } from "../data/mock";
 import type { Page } from "@/lib/nav";
 import { toast } from "../components/Toast";
 import Icon, { type IconName } from "../components/Icon";
+import SegmentedTabs from "../components/SegmentedTabs";
 
 interface AppointmentsProps {
   navigate: (page: Page, params?: { counselorId?: string }) => void;
@@ -48,27 +49,14 @@ export default function Appointments({ navigate }: AppointmentsProps) {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-border mb-6">
-          {(["Upcoming", "Past", "Cancelled"] as const).map((t) => {
-            const count = t === "Upcoming" ? upcomingAppts.length : t === "Past" ? pastAppts.length : cancelledAppts.length;
-            return (
-              <button
-                key={t}
-                onClick={() => { setTab(t); setSelected(null); }}
-                className={`flex items-center gap-2 px-4 py-3 text-sm font-[500] border-b-2 -mb-px transition-all ${
-                  tab === t ? "border-sage text-sage" : "border-transparent text-slateM hover:text-slate"
-                }`}
-              >
-                {t}
-                {count > 0 && (
-                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${tab === t ? "bg-sageL text-sage" : "bg-sand text-slateL"}`}>
-                    {count}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
+        <SegmentedTabs
+          label="Appointment status"
+          className="mb-6"
+          options={["Upcoming", "Past", "Cancelled"] as const}
+          value={tab}
+          onChange={(t) => { setTab(t); setSelected(null); }}
+          counts={{ Upcoming: upcomingAppts.length, Past: pastAppts.length, Cancelled: cancelledAppts.length }}
+        />
 
         {displayAppts.length === 0 ? (
           <div className="text-center py-20">

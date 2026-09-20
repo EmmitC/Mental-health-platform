@@ -50,7 +50,7 @@ export default function About({ navigate }: AboutProps) {
   return (
     <div className="bg-cream">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-slate py-24 lg:py-32">
+      <section className="light-scope relative overflow-hidden bg-slate py-24 lg:py-32">
         <div
           className="absolute inset-0 opacity-20"
           style={{

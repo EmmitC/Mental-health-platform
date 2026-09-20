@@ -63,7 +63,7 @@ export default function Messages({ navigate }: MessagesProps) {
                 <div
                   className={`px-4 py-3 rounded-[12px] text-sm leading-relaxed ${
                     from === "me"
-                      ? "bg-sage text-cream rounded-br-sm"
+                      ? "light-scope bg-ember text-slate rounded-br-sm"
                       : "bg-sand border border-border text-slate rounded-bl-sm"
                   }`}
                 >
@@ -84,7 +84,7 @@ export default function Messages({ navigate }: MessagesProps) {
               onChange={(e) => setNewMessage(e.target.value)}
               aria-label="Message" placeholder="Type a message..."
               rows={1}
-              className="flex-1 border border-border focus:border-sage rounded-xl px-4 py-3 text-sm bg-cream outline-none resize-none transition-colors"
+              className="flex-1 border border-border focus:border-sage rounded-[20px] px-4 py-3 text-sm bg-cream outline-none resize-none transition-colors"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
@@ -95,7 +95,7 @@ export default function Messages({ navigate }: MessagesProps) {
             <button
               aria-label="Send message"
               disabled={!newMessage.trim()}
-              className="w-10 h-10 bg-sage hover:bg-sageD rounded-xl text-cream flex items-center justify-center flex-shrink-0 transition-colors disabled:opacity-40"
+              className="w-11 h-11 bg-sage hover:bg-sageD rounded-full text-cream flex items-center justify-center flex-shrink-0 transition-colors disabled:opacity-40"
               onClick={send}
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

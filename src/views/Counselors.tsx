@@ -64,7 +64,7 @@ export default function Counselors({ navigate }: CounselorsProps) {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by name or specialization..."
-              className="w-full pl-11 pr-4 py-3 border border-border rounded-xl bg-cream text-sm focus:border-sage outline-none transition-colors"
+              className="w-full pl-11 pr-4 py-3 border border-border rounded-full bg-sand text-sm focus:border-sage outline-none transition-colors"
             />
           </div>
           <button
