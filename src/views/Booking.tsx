@@ -32,6 +32,10 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
   const [selectedService, setSelectedService] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [paying, setPaying] = useState(false);
+  const [payMethod, setPayMethod] = useState("Mobile Money");
+  const [momoNumber, setMomoNumber] = useState("");
+  const momoValid = momoNumber.replace(/\D/g, "").length >= 9;
+  const canPay = !paying && (payMethod !== "Mobile Money" || momoValid);
   const days = useMemo(buildDays, []);
   const leadingBlanks = blanksFor(days);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -183,13 +187,15 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
           <div>
             <h2 className="font-display text-3xl md:text-4xl font-[700] text-center text-slate mb-2">Choose a date and time</h2>
             <p className="text-slateM text-sm mb-8 text-center">All times shown in your local timezone.</p>
-            <div className="bg-sand border border-border rounded-[12px] p-6 mb-6">
-              <h3 className="font-[600] text-slate mb-5">
-                {fmtRange(days)}
-              </h3>
+            {/* Calendar: kit dark card, ember selection */}
+            <div className="light-scope mb-6 rounded-[12px] bg-slate p-5 text-cream sm:p-6">
+              <div className="mb-5 flex items-center justify-between">
+                <h3 className="font-[700]">{fmtRange(days)}</h3>
+                <Icon name="calendar" className="h-5 w-5 opacity-70" />
+              </div>
               <div className="grid grid-cols-7 gap-1.5 text-center">
                 {calDays.map((d) => (
-                  <p key={d} className="text-xs font-[600] text-slateM mb-1">{d}</p>
+                  <p key={d} className="mb-1 text-xs font-[600] opacity-70">{d}</p>
                 ))}
                 {Array.from({ length: leadingBlanks }, (_, i) => <span key={`b${i}`} />)}
                 {days.map(({ date, unavailable }) => {
@@ -202,9 +208,9 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                       aria-label={`${fmtLong(date)}${unavailable ? ", unavailable" : ""}`}
                       aria-pressed={isSelected}
                       className={`aspect-square rounded-full text-sm font-[600] transition-all ${
-                        isSelected ? "bg-sage text-cream" :
-                        unavailable ? "text-slateXL line-through decoration-slateXL/50" :
-                        "hover:bg-sageL hover:text-sageD text-slate"
+                        isSelected ? "scale-105 bg-ember text-slate" :
+                        unavailable ? "text-cream/55 line-through" :
+                        "text-cream hover:bg-cream/15"
                       }`}
                     >
                       {date.getDate()}
@@ -212,38 +218,55 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                   );
                 })}
               </div>
+              <p className="mt-4 flex items-center gap-2 text-xs opacity-75">
+                <span className="h-2.5 w-2.5 rounded-full bg-ember" /> Selected
+                <span className="ml-3 line-through">12</span> Unavailable
+              </p>
             </div>
 
             {selectedDate ? (
-              <div>
-                <h3 className="font-[600] text-slate mb-3">Available times, {fmtLong(selectedDate)}</h3>
-                <div className="grid grid-cols-3 gap-2 mb-8">
-                  {timeSlots.map((t) => {
-                    const disabled = disabledSlots.includes(t);
-                    const isSelected = selectedTime === t;
-                    return (
-                      <button
-                        key={t}
-                        onClick={() => !disabled && setSelectedTime(t)}
-                        disabled={disabled}
-                        className={`py-3 rounded-xl border text-sm font-[500] transition-all ${
-                          isSelected ? "border-sage bg-sage text-cream" :
-                          disabled ? "border-border text-slateXL cursor-not-allowed line-through" :
-                          "border-border hover:border-sageMid text-slateM"
-                        }`}
-                      >
-                        {t}
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="mb-8">
+                <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-sageL px-4 py-2 text-sm font-[700] text-sageD">
+                  <Icon name="calendar" className="h-4 w-4" />
+                  {fmtLong(selectedDate)}
+                </p>
+                {([["Morning", timeSlots.filter((t) => t.endsWith("AM"))], ["Afternoon", timeSlots.filter((t) => t.endsWith("PM"))]] as const).map(([label, slots]) => (
+                  <div key={label} className="mb-4">
+                    <h3 className="mb-2 text-xs font-[700] uppercase tracking-wide text-slateM">{label}</h3>
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                      {slots.map((t) => {
+                        const disabled = disabledSlots.includes(t);
+                        const isSelected = selectedTime === t;
+                        return (
+                          <button
+                            key={t}
+                            onClick={() => !disabled && setSelectedTime(t)}
+                            disabled={disabled}
+                            aria-pressed={isSelected}
+                            className={`flex items-center justify-center gap-2 rounded-full border-2 py-3 text-sm font-[600] transition-all ${
+                              isSelected ? "border-sage bg-sage text-cream" :
+                              disabled ? "cursor-not-allowed border-border text-slateXL line-through" :
+                              "border-border text-slateM hover:border-sageMid"
+                            }`}
+                          >
+                            <Icon name="clock" className="h-4 w-4" />
+                            {t}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
             ) : (
-              <p className="text-slateM text-sm mb-8 italic">Select a date to see available times.</p>
+              <div className="mb-8 flex items-center gap-3 rounded-[12px] bg-sand p-4 text-sm text-slateM">
+                <Icon name="calendar" className="h-5 w-5 flex-shrink-0" />
+                Pick a date to see the times available.
+              </div>
             )}
 
             <div className="flex gap-3">
-              <button onClick={prevStep} disabled={paying} className="px-6 py-3 border border-border rounded-xl text-sm font-[500] text-slateM hover:bg-sand">Back</button>
+              <button onClick={prevStep} disabled={paying} className="rounded-full border border-border px-6 py-3 text-sm font-[500] text-slateM transition-colors hover:bg-sand disabled:opacity-40">Back</button>
               <button onClick={nextStep} disabled={!selectedDate || !selectedTime} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-slateM text-cream font-[600] py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
                 Continue <span aria-hidden="true">→</span></button>
             </div>
@@ -285,7 +308,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
               ))}
             </div>
             <div className="flex gap-3">
-              <button onClick={prevStep} disabled={paying} className="px-6 py-3 border border-border rounded-xl text-sm font-[500] text-slateM hover:bg-sand">Back</button>
+              <button onClick={prevStep} disabled={paying} className="rounded-full border border-border px-6 py-3 text-sm font-[500] text-slateM transition-colors hover:bg-sand disabled:opacity-40">Back</button>
               <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-slateM text-cream font-[600] py-3 rounded-xl transition-colors">Continue <span aria-hidden="true">→</span></button>
             </div>
           </div>
@@ -327,7 +350,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
               </div>
             </div>
             <div className="flex gap-3 mt-8">
-              <button onClick={prevStep} disabled={paying} className="px-6 py-3 border border-border rounded-xl text-sm font-[500] text-slateM hover:bg-sand">Back</button>
+              <button onClick={prevStep} disabled={paying} className="rounded-full border border-border px-6 py-3 text-sm font-[500] text-slateM transition-colors hover:bg-sand disabled:opacity-40">Back</button>
               <button onClick={nextStep} className="inline-flex items-center justify-center gap-2 flex-1 bg-slate hover:bg-slateM text-cream font-[600] py-3 rounded-xl transition-colors">Continue <span aria-hidden="true">→</span></button>
             </div>
           </div>
@@ -362,32 +385,92 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
             </div>
 
             <div className="mb-6">
-              <h3 className="font-[600] text-slate mb-4">Payment Method</h3>
-              <div className="space-y-2">
-                {["Mobile Money (MTN / Airtel)", "Bank Card (Visa / Mastercard)", "Bank Transfer", "Platform Credits"].map((m) => (
-                  <label key={m} className="flex items-center gap-3 p-4 border border-border rounded-xl cursor-pointer hover:border-sageMid transition-all">
-                    <input type="radio" name="payment" className="accent-sage" defaultChecked={m.includes("Mobile")} />
-                    <span className="text-sm font-[500] text-slate">{m}</span>
-                  </label>
-                ))}
+              <h3 className="mb-3 font-[700] text-slate">Payment method</h3>
+              <div className="space-y-2" role="radiogroup" aria-label="Payment method">
+                {([
+                  ["Mobile Money", "MTN or Airtel", "phone"],
+                  ["Bank Card", "Visa or Mastercard", "card"],
+                  ["Bank Transfer", "Confirmed within a day", "article"],
+                  ["Platform Credits", "Use your balance", "spark"],
+                ] as const).map(([m, sub, icon]) => {
+                  const on = payMethod === m;
+                  return (
+                    <button
+                      key={m}
+                      role="radio"
+                      aria-checked={on}
+                      onClick={() => setPayMethod(m)}
+                      className={`flex w-full items-center gap-4 rounded-[12px] border-2 p-4 text-left transition-all ${
+                        on ? "border-sage bg-sage text-cream [&_.sub]:text-cream/90" : "border-border bg-cream hover:border-sageMid"
+                      }`}
+                    >
+                      <span className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full ${on ? "bg-cream/25" : "bg-sageL text-sage"}`}>
+                        <Icon name={icon} className="h-5 w-5" />
+                      </span>
+                      <span className="flex-1">
+                        <span className={`block text-sm font-[700] ${on ? "text-cream" : "text-slate"}`}>{m}</span>
+                        <span className="sub block text-xs text-slateM">{sub}</span>
+                      </span>
+                      <span className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-2 ${on ? "border-cream bg-cream" : "border-border"}`}>
+                        {on && <span className="h-2 w-2 rounded-full bg-sage" />}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {payMethod === "Mobile Money" && (
+                <div className="mt-4">
+                  <label htmlFor="momo" className="mb-1.5 block text-sm font-[500] text-slateM">Mobile money number</label>
+                  <input
+                    id="momo"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={momoNumber}
+                    onChange={(e) => setMomoNumber(e.target.value)}
+                    placeholder="+256 7XX XXX XXX"
+                    aria-invalid={momoNumber.length > 0 && !momoValid}
+                    className={`w-full rounded-full border bg-sand px-5 py-3 text-sm text-slate outline-none transition-colors ${
+                      momoNumber.length > 0 && !momoValid ? "border-crisis" : "border-border focus:border-sage"
+                    }`}
+                  />
+                  <p className={`mt-1.5 text-xs ${momoNumber.length > 0 && !momoValid ? "font-[500] text-crisis" : "text-slateL"}`}>
+                    {momoNumber.length > 0 && !momoValid ? "Enter a valid phone number." : "You will get a prompt on this phone to approve the payment."}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="mb-6 flex items-start gap-3 rounded-[12px] bg-sunL p-4 dark:bg-amberL">
+              <Icon name="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-slate" />
+              <div>
+                <p className="mb-1 text-xs font-[700] text-slate">Cancellation policy</p>
+                <p className="text-xs leading-relaxed text-slate">Free cancellation up to 24 hours before your session. After that, a 50% fee applies.</p>
               </div>
             </div>
 
-            <div className="bg-crisisL border border-crisis/20 rounded-xl p-4 mb-6">
-              <p className="text-crisis text-xs font-[600] mb-1">Cancellation Policy</p>
-              <p className="text-slateM text-xs leading-relaxed">Free cancellation up to 24 hours before your session. After that, a 50% fee applies.</p>
-            </div>
-
             <div className="flex gap-3">
-              <button onClick={prevStep} disabled={paying} className="px-6 py-3 border border-border rounded-xl text-sm font-[500] text-slateM hover:bg-sand">Back</button>
+              <button onClick={prevStep} disabled={paying} className="rounded-full border border-border px-6 py-3 text-sm font-[500] text-slateM transition-colors hover:bg-sand disabled:opacity-40">Back</button>
               <button
                 onClick={() => { setPaying(true); window.setTimeout(() => { setPaying(false); nextStep(); }, 1200); }}
-                disabled={paying}
-                className="flex-1 bg-sage hover:bg-sageD text-cream font-[600] py-3.5 rounded-xl transition-colors text-base disabled:opacity-70"
+                disabled={!canPay}
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-slate py-3.5 text-base font-[600] text-cream transition-colors hover:bg-slateM disabled:opacity-50"
               >
-                {paying ? "Processing payment…" : `Pay and Confirm: UGX ${service.price.toLocaleString()}`}
+                {paying ? (
+                  <>
+                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.3" strokeWidth="3" /><path d="M21 12a9 9 0 00-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" /></svg>
+                    Processing payment
+                  </>
+                ) : (
+                  <>
+                    <Icon name="lock" className="h-4 w-4" />
+                    Pay UGX {service.price.toLocaleString()}
+                  </>
+                )}
               </button>
             </div>
+            <p className="mt-3 text-center text-xs text-slateL">Payments are encrypted and only used for this booking.</p>
           </div>
         )}
       </div>
