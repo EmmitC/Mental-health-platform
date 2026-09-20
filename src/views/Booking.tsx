@@ -52,7 +52,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
           <h1 className="font-display text-3xl md:text-4xl font-[400] text-slate mb-2">Appointment Confirmed</h1>
           <p className="text-slateM mb-8">You will receive a confirmation email with all the details.</p>
 
-          <div className="bg-sand border border-border rounded-2xl p-6 text-left space-y-3 mb-8">
+          <div className="bg-sand border border-border rounded-[12px] p-6 text-left space-y-3 mb-8">
             <div className="flex justify-between text-sm">
               <span className="text-slateM">Counselor</span>
               <span className="font-[500] text-slate">{counselor.name}</span>
@@ -149,7 +149,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                 <button
                   key={s.name}
                   onClick={() => setSelectedService(i)}
-                  className={`w-full flex items-start justify-between p-5 rounded-2xl border-2 text-left transition-all ${
+                  className={`w-full flex items-start justify-between p-5 rounded-[12px] border-2 text-left transition-all ${
                     selectedService === i ? "border-sage bg-sage text-cream shadow-[0_8px_24px_-8px_rgba(78,106,40,0.5)] [&_.sub]:text-cream/85" : "border-border bg-cream hover:border-sageMid"
                   }`}
                 >
@@ -181,7 +181,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
           <div>
             <h2 className="font-display text-3xl font-[400] text-slate mb-2">Choose a date and time</h2>
             <p className="text-slateM text-sm mb-8">All times shown in your local timezone.</p>
-            <div className="bg-sand border border-border rounded-2xl p-6 mb-6">
+            <div className="bg-sand border border-border rounded-[12px] p-6 mb-6">
               <h3 className="font-[600] text-slate mb-5">
                 {fmtRange(days)}
               </h3>
@@ -258,7 +258,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
                 <button
                   key={s}
                   onClick={() => setSessionType(s)}
-                  className={`w-full flex items-start gap-4 p-5 rounded-2xl border-2 transition-all ${
+                  className={`w-full flex items-start gap-4 p-5 rounded-[12px] border-2 transition-all ${
                     sessionType === s ? "border-sage bg-sage text-cream shadow-[0_8px_24px_-8px_rgba(78,106,40,0.5)] [&_.sub]:text-cream/85" : "border-border bg-cream hover:border-sageMid"
                   }`}
                 >
@@ -333,7 +333,7 @@ export default function Booking({ navigate, counselorId }: BookingProps) {
           <div>
             <h2 className="font-display text-3xl font-[400] text-slate mb-8">Review and pay</h2>
 
-            <div className="bg-sand border border-border rounded-2xl p-6 mb-6">
+            <div className="bg-sand border border-border rounded-[12px] p-6 mb-6">
               <h3 className="font-[600] text-slate mb-4">Appointment Summary</h3>
               <div className="space-y-3 text-sm">
                 {[

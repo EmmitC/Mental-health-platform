@@ -87,7 +87,7 @@ export default function About({ navigate }: AboutProps) {
               We remain small deliberately. We would rather have 50 counselors we fully trust than 500 we cannot vouch for.
             </p>
           </div>
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-[12px] overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&h=500&fit=crop&auto=format"
               alt="Two people in a counseling session"
@@ -103,7 +103,7 @@ export default function About({ navigate }: AboutProps) {
           <h2 className="font-display text-3xl md:text-4xl font-[400] text-slate mb-12" style={{ textWrap: "balance" }}>
             What we stand for
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border rounded-[12px] overflow-hidden border border-border">
             {values.map(({ title, desc }) => (
               <div key={title} className="bg-sand p-8">
                 <h3 className="font-[600] text-slate mb-3 text-lg">{title}</h3>
@@ -125,7 +125,7 @@ export default function About({ navigate }: AboutProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {team.map((p) => (
             <div key={p.name}>
-              <div className="rounded-2xl overflow-hidden mb-5 bg-sand">
+              <div className="rounded-[12px] overflow-hidden mb-5 bg-sand">
                 <img src={p.photo} alt={p.name} className="w-full h-56 object-cover object-center" />
               </div>
               <p className="font-[600] text-slate">{p.name}</p>

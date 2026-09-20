@@ -105,7 +105,7 @@ export default function CounselorAppointments({ navigate }: CounselorAppointment
         {tab === "Upcoming" && (
           <div className="space-y-3">
             {upcomingAppointments.map((a) => (
-              <div key={a.id} className="bg-cream border border-border rounded-2xl p-5">
+              <div key={a.id} className="bg-cream border border-border rounded-[12px] p-5">
                 <div className="flex items-center gap-4">
                   <img src={a.clientPhoto} alt={a.clientName} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
                   <div className="flex-1 min-w-0">
@@ -154,7 +154,7 @@ export default function CounselorAppointments({ navigate }: CounselorAppointment
               </div>
             ) : (
               reqs.map((r) => (
-                <div key={r.id} className="bg-cream border border-amber/30 bg-amberL/20 rounded-2xl p-5">
+                <div key={r.id} className="bg-cream border border-amber/30 bg-amberL/20 rounded-[12px] p-5">
                   <div className="flex items-start gap-4">
                     <img src={r.clientPhoto} alt={r.clientName} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
                     <div className="flex-1">
@@ -193,7 +193,7 @@ export default function CounselorAppointments({ navigate }: CounselorAppointment
         {tab === "Past" && (
           <div className="space-y-3">
             {pastAppointments.map((a) => (
-              <div key={a.id} className="bg-cream border border-border rounded-2xl p-5">
+              <div key={a.id} className="bg-cream border border-border rounded-[12px] p-5">
                 <div className="flex items-center gap-4">
                   <img src={a.clientPhoto} alt={a.clientName} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
                   <div className="flex-1 min-w-0">

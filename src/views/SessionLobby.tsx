@@ -110,7 +110,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
       <div className="max-w-md w-full">
         {/* Counselor info */}
         <div className="text-center mb-10">
-          <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-4 bg-slateM">
+          <div className="w-20 h-20 rounded-[12px] overflow-hidden mx-auto mb-4 bg-slateM">
             <img
               src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=300&fit=crop&crop=face&auto=format"
               alt="Dr. Grace Nakamya"
@@ -139,7 +139,7 @@ export default function SessionLobby({ navigate }: SessionLobbyProps) {
         </div>
 
         {/* Device checks */}
-        <div className="bg-cream/5 border border-cream/10 rounded-2xl p-5 mb-6">
+        <div className="bg-cream/5 border border-cream/10 rounded-[12px] p-5 mb-6">
           <p className="text-cream/60 text-xs font-[600] uppercase tracking-wide mb-4">Check your setup</p>
           <div className="space-y-3">
             <button

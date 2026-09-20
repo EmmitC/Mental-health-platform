@@ -61,7 +61,7 @@ export default function Messages({ navigate }: MessagesProps) {
               )}
               <div className={`max-w-[70%] ${from === "me" ? "items-end" : "items-start"} flex flex-col gap-1`}>
                 <div
-                  className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                  className={`px-4 py-3 rounded-[12px] text-sm leading-relaxed ${
                     from === "me"
                       ? "bg-sage text-cream rounded-br-sm"
                       : "bg-sand border border-border text-slate rounded-bl-sm"
@@ -138,7 +138,7 @@ export default function Messages({ navigate }: MessagesProps) {
               <button
                 key={m.id}
                 onClick={() => setActiveConvo(m)}
-                className="w-full flex items-center gap-4 p-4 bg-cream border border-border hover:border-sageMid rounded-2xl transition-all text-left"
+                className="w-full flex items-center gap-4 p-4 bg-cream border border-border hover:border-sageMid rounded-[12px] transition-all text-left"
               >
                 <div className="relative flex-shrink-0">
                   <img src={m.counselor.photo} alt={m.counselor.name} className="w-12 h-12 rounded-xl object-cover object-top bg-sand" />

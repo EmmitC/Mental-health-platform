@@ -51,7 +51,7 @@ export default function CounselorProfileEdit({ navigate: _navigate }: CounselorP
             <img
               src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=160&h=160&fit=crop&crop=face&auto=format"
               alt="Profile"
-              className="w-20 h-20 rounded-2xl object-cover object-top bg-sand"
+              className="w-20 h-20 rounded-[12px] object-cover object-top bg-sand"
             />
             <div className="absolute bottom-0 right-0 w-6 h-6 bg-sage rounded-full border-2 border-cream flex items-center justify-center text-cream text-xs cursor-pointer">
               <Icon name="edit" className="h-3 w-3" />
@@ -162,7 +162,7 @@ export default function CounselorProfileEdit({ navigate: _navigate }: CounselorP
 
         {tab === "Credentials" && (
           <div className="space-y-4">
-            <div className="bg-sageL border border-sageMid rounded-2xl p-5 flex items-center gap-3">
+            <div className="bg-sageL border border-sageMid rounded-[12px] p-5 flex items-center gap-3">
               <span className="text-2xl">✓</span>
               <div>
                 <p className="font-[600] text-slate">Credentials verified</p>
@@ -214,12 +214,12 @@ export default function CounselorProfileEdit({ navigate: _navigate }: CounselorP
 
         {tab === "Security" && (
           <div className="space-y-4">
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-1">Password</h3>
               <p className="text-slateM text-sm mb-4">Last changed 6 months ago.</p>
               <button onClick={() => toast("Password reset link sent to your email")} className="text-sm font-[600] text-sage border border-sageMid px-4 py-2 rounded-lg hover:bg-sageL transition-all">Change password</button>
             </div>
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-1">Two-Factor Authentication</h3>
               <p className="text-slateM text-sm mb-4">Enabled via authenticator app.</p>
               <button onClick={() => toast("Two-factor settings opened")} className="text-sm font-[500] text-slateM border border-border px-4 py-2 rounded-lg hover:bg-sand transition-all">Manage 2FA</button>

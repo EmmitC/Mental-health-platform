@@ -41,7 +41,7 @@ export default function CounselorProfile({ navigate, counselorId }: CounselorPro
 
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             <div className="flex gap-6">
-              <div className="w-28 h-28 lg:w-36 lg:h-36 rounded-2xl overflow-hidden bg-sandDark flex-shrink-0">
+              <div className="w-28 h-28 lg:w-36 lg:h-36 rounded-[12px] overflow-hidden bg-sandDark flex-shrink-0">
                 <img src={counselor.photo} alt={counselor.name} className="w-full h-full object-cover object-top" />
               </div>
               <div>
@@ -171,7 +171,7 @@ export default function CounselorProfile({ navigate, counselorId }: CounselorPro
             {activeTab === "Availability" && (
               <div>
                 <h2 className="font-display text-2xl font-[400] text-slate mb-6">Availability</h2>
-                <div className="bg-sand rounded-2xl border border-border p-6 mb-6">
+                <div className="bg-sand rounded-[12px] border border-border p-6 mb-6">
                   <h3 className="font-[600] text-slate mb-5">{fmtRange(days)}</h3>
                   <div className="grid grid-cols-7 gap-2 text-center">
                     {calDays.map((d) => (
@@ -269,7 +269,7 @@ export default function CounselorProfile({ navigate, counselorId }: CounselorPro
 
           {/* Sticky Booking Sidebar */}
           <div className="lg:w-72 flex-shrink-0">
-            <div className="sticky top-24 bg-cream border border-border rounded-2xl p-6 space-y-4">
+            <div className="sticky top-24 bg-cream border border-border rounded-[12px] p-6 space-y-4">
               <div className="text-center pb-4 border-b border-border">
                 <p className="text-slateL text-sm mb-1">Starting from</p>
                 <p className="font-display text-3xl font-[400] text-slate">UGX {counselor.priceUGX.toLocaleString()}</p>

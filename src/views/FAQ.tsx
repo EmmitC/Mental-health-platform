@@ -181,7 +181,7 @@ export default function FAQ({ navigate }: FAQProps) {
               <h2 className="font-[600] text-slate text-xs tracking-wide uppercase mb-4 text-slateL">
                 {section.category}
               </h2>
-              <div className="bg-cream border border-border rounded-2xl px-6 divide-y divide-border">
+              <div className="bg-cream border border-border rounded-[12px] px-6 divide-y divide-border">
                 {section.items.map(({ q, a }) => (
                   <AccordionItem key={q} question={q} answer={a} />
                 ))}
@@ -191,7 +191,7 @@ export default function FAQ({ navigate }: FAQProps) {
         </div>
 
         {/* Still need help */}
-        <div className="mt-14 bg-sand border border-border rounded-2xl p-8 text-center">
+        <div className="mt-14 bg-sand border border-border rounded-[12px] p-8 text-center">
           <h3 className="font-display text-2xl font-[400] text-slate mb-2">Still have questions?</h3>
           <p className="text-slateM text-sm mb-6 leading-relaxed">
             Our team usually responds within one business day.

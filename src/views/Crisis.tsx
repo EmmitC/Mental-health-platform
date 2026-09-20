@@ -40,7 +40,7 @@ export default function Crisis({ navigate }: CrisisProps) {
         </div>
 
         {/* Immediate danger CTA */}
-        <div className="bg-crisis/5 border-2 border-crisis/30 rounded-2xl p-8 text-center mb-10">
+        <div className="bg-crisis/5 border-2 border-crisis/30 rounded-[12px] p-8 text-center mb-10">
           <h2 className="font-[700] text-slate text-xl mb-3">In immediate danger?</h2>
           <p className="text-slateM mb-6 leading-relaxed">
             Call <strong>999</strong> or <strong>112</strong> immediately, or go to your nearest emergency facility.

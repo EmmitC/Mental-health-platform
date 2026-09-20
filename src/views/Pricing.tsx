@@ -91,7 +91,7 @@ export default function Pricing({ navigate }: PricingProps) {
           {services.map((s) => (
             <div
               key={s.name}
-              className={`rounded-2xl border p-6 flex flex-col ${
+              className={`rounded-[12px] border p-6 flex flex-col ${
                 s.highlight
                   ? "bg-sageL border-sageMid"
                   : "bg-cream border-border hover:border-sageMid transition-colors"

@@ -136,11 +136,8 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
  * without needing !important.
  */
 button.rounded-xl,
-button.rounded-2xl,
 button.rounded-lg,
-button.rounded-3xl,
 a.rounded-xl,
-a.rounded-2xl,
 a.rounded-lg {
   border-radius: 9999px;
 }

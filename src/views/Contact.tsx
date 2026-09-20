@@ -135,14 +135,14 @@ export default function Contact({ navigate }: ContactProps) {
 
           {/* Info panel */}
           <div className="md:col-span-2 space-y-6">
-            <div className="bg-sand border border-border rounded-2xl p-6">
+            <div className="bg-sand border border-border rounded-[12px] p-6">
               <h3 className="font-[600] text-slate mb-1">Response time</h3>
               <p className="text-slateM text-sm leading-relaxed">
                 We aim to respond within one business day, Monday to Friday, 9:00 AM to 5:00 PM EAT.
               </p>
             </div>
 
-            <div className="bg-sand border border-border rounded-2xl p-6">
+            <div className="bg-sand border border-border rounded-[12px] p-6">
               <h3 className="font-[600] text-slate mb-3">Other ways to reach us</h3>
               <div className="space-y-3">
                 <div>
@@ -158,7 +158,7 @@ export default function Contact({ navigate }: ContactProps) {
               </div>
             </div>
 
-            <div className="bg-crisisL border border-crisis/20 rounded-2xl p-6">
+            <div className="bg-crisisL border border-crisis/20 rounded-[12px] p-6">
               <h3 className="font-[600] text-crisis mb-2">Need immediate help?</h3>
               <p className="text-slateM text-sm leading-relaxed mb-4">
                 We are not an emergency service. If you are in crisis, please contact emergency services or visit our crisis page.

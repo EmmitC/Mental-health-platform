@@ -69,7 +69,7 @@ export default function AdminCounselors({ navigate: _navigate }: AdminCounselors
 
       <div className="max-w-5xl mx-auto px-5 lg:px-8 py-6 space-y-3">
         {filtered.map((c) => (
-          <div key={c.id} className={`bg-cream rounded-2xl border p-5 ${c.verification === "Pending" ? "border-amber/40 bg-amberL/10" : "border-border"}`}>
+          <div key={c.id} className={`bg-cream rounded-[12px] border p-5 ${c.verification === "Pending" ? "border-amber/40 bg-amberL/10" : "border-border"}`}>
             <div className="flex items-start gap-4">
               <img src={c.photo} alt={c.name} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
               <div className="flex-1 min-w-0">

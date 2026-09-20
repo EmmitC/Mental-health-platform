@@ -97,7 +97,7 @@ export default function AdminResources({ navigate: _navigate }: AdminResourcesPr
         {/* Content list */}
         <div className="space-y-2">
           {filtered.map((c) => (
-            <div key={c.id} className="bg-cream border border-border hover:border-sageMid rounded-2xl p-5 transition-all">
+            <div key={c.id} className="bg-cream border border-border hover:border-sageMid rounded-[12px] p-5 transition-all">
               <div className="flex items-start gap-4 justify-between">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">

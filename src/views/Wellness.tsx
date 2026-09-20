@@ -72,7 +72,7 @@ export default function Wellness({ navigate }: WellnessProps) {
         {tab === "Check-in" && (
           <div>
             {checkedIn ? (
-              <div className="bg-sageL border border-sageMid rounded-2xl p-6 mb-8 flex items-center gap-4">
+              <div className="bg-sageL border border-sageMid rounded-[12px] p-6 mb-8 flex items-center gap-4">
                 <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center text-2xl">✓</div>
                 <div>
                   <p className="font-[600] text-sage">Check-in complete</p>
@@ -133,7 +133,7 @@ export default function Wellness({ navigate }: WellnessProps) {
             )}
 
             {/* Mood history chart */}
-            <div className="bg-cream border border-border rounded-2xl p-6">
+            <div className="bg-cream border border-border rounded-[12px] p-6">
               <h3 className="font-[600] text-slate mb-5">This week</h3>
               <div className="flex items-end gap-3 h-28">
                 {moodHistory.map(({ day, score }) => (
@@ -167,7 +167,7 @@ export default function Wellness({ navigate }: WellnessProps) {
             </div>
 
             {showNewGoal && (
-              <div className="bg-sageL border border-sageMid rounded-2xl p-6 mb-6">
+              <div className="bg-sageL border border-sageMid rounded-[12px] p-6 mb-6">
                 <h3 className="font-[600] text-slate mb-4">New Goal</h3>
                 <div className="space-y-3">
                   <input placeholder="Goal name (e.g. Improve Sleep)" className="w-full border border-sageMid bg-cream focus:border-sage px-4 py-3 rounded-xl text-sm outline-none" />
@@ -187,7 +187,7 @@ export default function Wellness({ navigate }: WellnessProps) {
 
             <div className="space-y-4">
               {wellnessGoals.map(({ id, title, target, progress, streak }) => (
-                <div key={id} className="bg-cream border border-border rounded-2xl p-6">
+                <div key={id} className="bg-cream border border-border rounded-[12px] p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="font-[600] text-slate">{title}</h3>
@@ -235,7 +235,7 @@ export default function Wellness({ navigate }: WellnessProps) {
                 </div>
                 <div className="space-y-4">
                   {assessments.map(({ id, name, questions, duration, lastTaken, category }) => (
-                    <div key={id} className="bg-cream border border-border rounded-2xl p-5 flex items-center justify-between gap-4">
+                    <div key={id} className="bg-cream border border-border rounded-[12px] p-5 flex items-center justify-between gap-4">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-xs font-[600] text-terra bg-terraL px-2 py-0.5 rounded-full">{category}</span>
@@ -275,7 +275,7 @@ export default function Wellness({ navigate }: WellnessProps) {
             </div>
 
             {newJournalOpen && (
-              <div className="bg-cream border border-sageMid rounded-2xl p-6 mb-6">
+              <div className="bg-cream border border-sageMid rounded-[12px] p-6 mb-6">
                 <h3 className="font-[600] text-slate mb-4">New Journal Entry</h3>
                 <div className="space-y-4">
                   <div>
@@ -331,7 +331,7 @@ export default function Wellness({ navigate }: WellnessProps) {
                 {journalEntries.map(({ id, date, mood, preview, tags }) => (
                   <button
                     key={id}
-                    className="w-full text-left bg-cream border border-border rounded-2xl p-5 hover:border-sageMid transition-all group"
+                    className="w-full text-left bg-cream border border-border rounded-[12px] p-5 hover:border-sageMid transition-all group"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
@@ -398,7 +398,7 @@ function AssessmentView({ step, answers, onAnswer, onBack, navigate }: {
       <div className="text-center py-10">
         <div className="w-14 h-14 bg-sageL rounded-full flex items-center justify-center mx-auto mb-5 text-2xl">✓</div>
         <h2 className="font-display text-2xl font-[400] text-slate mb-3">Assessment complete</h2>
-        <div className="bg-sand border border-border rounded-2xl p-6 text-left mb-6 max-w-sm mx-auto">
+        <div className="bg-sand border border-border rounded-[12px] p-6 text-left mb-6 max-w-sm mx-auto">
           <p className="text-slateM text-sm leading-relaxed">
             Your responses suggest you may be experiencing some anxiety symptoms. This screening does not provide a diagnosis.
           </p>

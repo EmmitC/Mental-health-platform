@@ -34,7 +34,7 @@ export default function CounselorClients({ navigate: _navigate }: CounselorClien
             <img
               src={selected.photo}
               alt={selected.name}
-              className="w-16 h-16 rounded-2xl object-cover object-top bg-sand"
+              className="w-16 h-16 rounded-[12px] object-cover object-top bg-sand"
             />
             <div>
               <h2 className="font-display text-2xl font-[400] text-slate">{selected.name}</h2>
@@ -51,7 +51,7 @@ export default function CounselorClients({ navigate: _navigate }: CounselorClien
 
           <div className="space-y-5">
             {/* Session summary */}
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-4">Session history</h3>
               <div className="grid grid-cols-3 gap-4">
                 <div>
@@ -70,7 +70,7 @@ export default function CounselorClients({ navigate: _navigate }: CounselorClien
             </div>
 
             {/* Concerns */}
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-3">Presenting concerns</h3>
               <div className="flex flex-wrap gap-2">
                 {selected.concerns.map((c) => (
@@ -82,7 +82,7 @@ export default function CounselorClients({ navigate: _navigate }: CounselorClien
             </div>
 
             {/* Intake notes */}
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-3">Intake information</h3>
               <p className="text-slateM text-sm leading-relaxed">
                 Client has been experiencing elevated stress and difficulty sleeping over the past three months. No prior counseling history. No medications reported. Emergency contact: provided on file.
@@ -90,7 +90,7 @@ export default function CounselorClients({ navigate: _navigate }: CounselorClien
             </div>
 
             {/* Preferred details */}
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-3">Client details</h3>
               <dl className="space-y-2">
                 {[
@@ -135,7 +135,7 @@ export default function CounselorClients({ navigate: _navigate }: CounselorClien
             <button
               key={c.id}
               onClick={() => setSelected(c)}
-              className="w-full text-left bg-cream border border-border hover:border-sageMid rounded-2xl p-5 transition-all group"
+              className="w-full text-left bg-cream border border-border hover:border-sageMid rounded-[12px] p-5 transition-all group"
             >
               <div className="flex items-center gap-4">
                 <img src={c.photo} alt={c.name} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />

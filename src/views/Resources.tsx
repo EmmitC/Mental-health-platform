@@ -86,7 +86,7 @@ export default function Resources({ navigate }: ResourcesProps) {
                 <button
                   key={r.id}
                   onClick={() => setSelectedResource(r)}
-                  className="flex-shrink-0 w-56 text-left bg-cream border border-sageMid hover:border-sage rounded-2xl overflow-hidden transition-all group"
+                  className="flex-shrink-0 w-56 text-left bg-cream border border-sageMid hover:border-sage rounded-[12px] overflow-hidden transition-all group"
                 >
                   <div className="h-28 overflow-hidden bg-sand">
                     <img src={r.image} alt={r.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -112,7 +112,7 @@ export default function Resources({ navigate }: ResourcesProps) {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((r) => (
-              <div key={r.id} className="bg-cream border border-border hover:border-sageMid rounded-2xl overflow-hidden transition-all group flex flex-col">
+              <div key={r.id} className="bg-cream border border-border hover:border-sageMid rounded-[12px] overflow-hidden transition-all group flex flex-col">
                 <div className="relative h-44 overflow-hidden bg-sand">
                   <img src={r.image} alt={r.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <button
@@ -160,7 +160,7 @@ function ResourceDetail({ resource: r, onBack, navigate }: { resource: Resource;
           ← Resource Library
         </button>
 
-        <div className="h-56 rounded-2xl overflow-hidden bg-sand mb-8">
+        <div className="h-56 rounded-[12px] overflow-hidden bg-sand mb-8">
           <img src={r.image} alt={r.title} className="w-full h-full object-cover" />
         </div>
 
@@ -203,7 +203,7 @@ function ResourceDetail({ resource: r, onBack, navigate }: { resource: Resource;
           </ul>
         </div>
 
-        <div className="bg-sageL border border-sageMid rounded-2xl p-6 text-center">
+        <div className="bg-sageL border border-sageMid rounded-[12px] p-6 text-center">
           <p className="font-[600] text-slate mb-1">Ready to talk to someone?</p>
           <p className="text-slateM text-sm mb-4">A counselor can give you personalised guidance based on your specific situation.</p>
           <button

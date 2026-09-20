@@ -179,7 +179,7 @@ export default function CounselorNotes({ navigate: _navigate }: CounselorNotesPr
             <button
               key={n.id}
               onClick={() => setSelectedNote(n)}
-              className="w-full text-left bg-cream border border-border hover:border-sageMid rounded-2xl p-5 transition-all group"
+              className="w-full text-left bg-cream border border-border hover:border-sageMid rounded-[12px] p-5 transition-all group"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">

@@ -78,7 +78,7 @@ export default function Sidebar({ navigate, currentPage, onLogout }: SidebarProp
       {/* Mobile bottom nav */}
       {moreOpen && <div className="lg:hidden fixed inset-0 z-30" onClick={() => setMoreOpen(false)} aria-hidden="true" />}
       {moreOpen && (
-        <div className="lg:hidden fixed bottom-[68px] right-3 z-40 w-56 rounded-2xl border border-border bg-cream p-2 shadow-[0_12px_40px_-8px_rgba(60,32,16,0.22)] page-enter">
+        <div className="lg:hidden fixed bottom-[68px] right-3 z-40 w-56 rounded-[12px] border border-border bg-cream p-2 shadow-[0_12px_40px_-8px_rgba(60,32,16,0.22)] page-enter">
           {[
             { label: "Profile", page: "profile" as Page, icon: UserIcon },
             { label: "Resources", page: "resources" as Page, icon: BookIcon },

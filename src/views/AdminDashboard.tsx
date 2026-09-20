@@ -38,7 +38,7 @@ export default function AdminDashboard({ navigate }: AdminDashboardProps) {
         {/* Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {metrics.map(({ label, value, sub, color }) => (
-            <div key={label} className="bg-cream border border-border rounded-2xl p-5">
+            <div key={label} className="bg-cream border border-border rounded-[12px] p-5">
               <p className={`font-display text-3xl font-[300] ${color} mb-1`}>{value}</p>
               <p className="text-slateM text-xs font-[500]">{label}</p>
               <p className="text-slateXL text-xs mt-1">{sub}</p>
@@ -61,7 +61,7 @@ export default function AdminDashboard({ navigate }: AdminDashboardProps) {
               </div>
               <div className="space-y-3">
                 {pending.map((c) => (
-                  <div key={c.id} className="bg-cream border border-amber/30 rounded-2xl p-4">
+                  <div key={c.id} className="bg-cream border border-amber/30 rounded-[12px] p-4">
                     <div className="flex items-center gap-3">
                       <img src={c.photo} alt={c.name} className="w-10 h-10 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
                       <div className="flex-1 min-w-0">

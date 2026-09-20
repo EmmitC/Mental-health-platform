@@ -22,7 +22,7 @@ export default function Profile({ navigate }: ProfileProps) {
 
         {/* Avatar */}
         <div className="flex items-center gap-5 mb-8">
-          <div className="w-20 h-20 rounded-2xl bg-sageL text-sage flex items-center justify-center"><Icon name="user" className="h-9 w-9" /></div>
+          <div className="w-20 h-20 rounded-[12px] bg-sageL text-sage flex items-center justify-center"><Icon name="user" className="h-9 w-9" /></div>
           <div>
             <p className="font-[600] text-slate">Sarah Namukasa</p>
             <p className="text-slateM text-sm">sarah.namukasa@email.com</p>
@@ -82,22 +82,22 @@ export default function Profile({ navigate }: ProfileProps) {
 
         {tab === "Security" && (
           <div className="space-y-4">
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-1">Password</h3>
               <p className="text-slateM text-sm mb-4">Last changed 3 months ago.</p>
               <button onClick={() => toast("Password reset link sent to your email")} className="text-sm font-[600] text-sage border border-sageMid px-4 py-2 rounded-lg hover:bg-sageL transition-all">Change Password</button>
             </div>
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-1">Two-Factor Authentication</h3>
               <p className="text-slateM text-sm mb-4">Add an extra layer of security to your account.</p>
               <button onClick={() => toast("Two-factor setup started")} className="text-sm font-[600] text-sage border border-sageMid px-4 py-2 rounded-lg hover:bg-sageL transition-all">Enable 2FA</button>
             </div>
-            <div className="bg-cream border border-border rounded-2xl p-5">
+            <div className="bg-cream border border-border rounded-[12px] p-5">
               <h3 className="font-[600] text-slate mb-1">Active Sessions</h3>
               <p className="text-slateM text-sm mb-4">1 device signed in.</p>
               <button onClick={() => toast("Loading active sessions")} className="text-sm font-[500] text-slateM border border-border px-4 py-2 rounded-lg hover:bg-sand transition-all">View Sessions</button>
             </div>
-            <div className="bg-cream border border-crisis/20 rounded-2xl p-5">
+            <div className="bg-cream border border-crisis/20 rounded-[12px] p-5">
               <h3 className="font-[600] text-crisis mb-1">Delete Account</h3>
               <p className="text-slateM text-sm mb-4">Permanently remove your account and all associated data. This cannot be undone.</p>
               <button onClick={() => toast("Account deletion needs email confirmation. Check your inbox.")} className="text-sm font-[500] text-crisis border border-crisis/30 px-4 py-2 rounded-lg hover:bg-crisisL transition-all">Delete Account</button>

@@ -30,7 +30,7 @@ export default function Dashboard({ navigate }: DashboardProps) {
 
         {/* Check-in card */}
         {!checkedIn ? (
-          <div className="bg-ember rounded-3xl p-6 mb-6">
+          <div className="bg-ember rounded-[12px] p-6 mb-6">
             <h2 className="font-display text-2xl font-[700] text-slate mb-1">How are you feeling today?</h2>
             <p className="text-slate/80 text-sm mb-5">A quick check-in helps you track your wellbeing over time.</p>
             <div className="flex gap-3 mb-5">
@@ -58,7 +58,7 @@ export default function Dashboard({ navigate }: DashboardProps) {
             )}
           </div>
         ) : (
-          <div className="bg-sageL border border-sageMid rounded-2xl p-5 mb-6 flex items-center gap-3">
+          <div className="bg-sageL border border-sageMid rounded-[12px] p-5 mb-6 flex items-center gap-3">
             <Icon name="check" className="h-6 w-6 text-sage" />
             <div>
               <p className="font-[600] text-sage text-sm">Check-in logged</p>
@@ -70,7 +70,7 @@ export default function Dashboard({ navigate }: DashboardProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Upcoming Appointment */}
           <div className="lg:col-span-2">
-            <div className="bg-cream border border-border rounded-2xl p-6 mb-5">
+            <div className="bg-cream border border-border rounded-[12px] p-6 mb-5">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-[600] text-slate">Upcoming Appointment</h2>
                 <button onClick={() => navigate("appointments")} className="text-sage text-xs font-[500] hover:underline">View all</button>
@@ -117,7 +117,7 @@ export default function Dashboard({ navigate }: DashboardProps) {
             </div>
 
             {/* Mood Chart */}
-            <div className="bg-sun rounded-3xl p-6">
+            <div className="bg-sun rounded-[12px] p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-[700] text-slate">Your Week</h2>
                 <button onClick={() => navigate("wellness")} className="text-sage text-xs font-[500] hover:underline">View wellness</button>
@@ -155,7 +155,7 @@ export default function Dashboard({ navigate }: DashboardProps) {
           {/* Right Column */}
           <div className="space-y-5">
             {/* Wellness Goals */}
-            <div className="bg-cream border border-border rounded-2xl p-6">
+            <div className="bg-cream border border-border rounded-[12px] p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-[600] text-slate">My Goals</h2>
                 <button onClick={() => navigate("wellness")} className="text-sage text-xs font-[500] hover:underline">Manage</button>
@@ -180,7 +180,7 @@ export default function Dashboard({ navigate }: DashboardProps) {
             </div>
 
             {/* Recommended Resource */}
-            <div className="bg-cream border border-border rounded-2xl p-6">
+            <div className="bg-cream border border-border rounded-[12px] p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-[600] text-slate">For You</h2>
                 <button onClick={() => navigate("resources")} className="text-sage text-xs font-[500] hover:underline">All resources</button>

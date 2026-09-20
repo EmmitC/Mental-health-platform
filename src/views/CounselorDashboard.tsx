@@ -53,7 +53,7 @@ export default function CounselorDashboard({ navigate }: CounselorDashboardProps
             { label: "Unread messages", value: counselorStats.unreadMessages, color: "text-amber" },
             { label: "This week", value: `${counselorStats.weekSessions} sessions`, color: "text-slate" },
           ].map(({ label, value, color }) => (
-            <div key={label} className="bg-cream border border-border rounded-2xl p-5">
+            <div key={label} className="bg-cream border border-border rounded-[12px] p-5">
               <p className={`font-display text-3xl font-[300] ${color} mb-1`}>{value}</p>
               <p className="text-slateM text-xs">{label}</p>
             </div>
@@ -69,7 +69,7 @@ export default function CounselorDashboard({ navigate }: CounselorDashboardProps
             </h2>
             <div className="space-y-3">
               {requests.map((r: PendingRequest) => (
-                <div key={r.id} className="bg-cream border border-border rounded-2xl p-5">
+                <div key={r.id} className="bg-cream border border-border rounded-[12px] p-5">
                   <div className="flex items-start gap-4">
                     <img src={r.clientPhoto} alt={r.clientName} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -124,7 +124,7 @@ export default function CounselorDashboard({ navigate }: CounselorDashboardProps
           <h2 className="font-[600] text-slate mb-4">Today's schedule</h2>
           <div className="space-y-3">
             {todaySchedule.map((s) => (
-              <div key={s.id} className="bg-cream border border-border rounded-2xl p-5 flex items-center gap-4">
+              <div key={s.id} className="bg-cream border border-border rounded-[12px] p-5 flex items-center gap-4">
                 <div className="text-center w-16 flex-shrink-0">
                   <p className="font-[600] text-slate text-sm">{s.time}</p>
                   <p className="text-slateL text-xs">{s.duration}</p>

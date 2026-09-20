@@ -91,7 +91,7 @@ export default function Counselors({ navigate }: CounselorsProps) {
 
         {/* Filters Panel */}
         {filterOpen && (
-          <div className="bg-sand border border-border rounded-2xl p-6 mb-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-sand border border-border rounded-[12px] p-6 mb-6 grid grid-cols-1 md:grid-cols-3 gap-6">
             <FilterGroup label="Specialization" items={specializations} selected={selectedSpecs} onToggle={(v) => toggleArr(selectedSpecs, setSelectedSpecs, v)} />
             <FilterGroup label="Language" items={languages} selected={selectedLangs} onToggle={(v) => toggleArr(selectedLangs, setSelectedLangs, v)} />
             <FilterGroup label="Session Type" items={sessionTypes} selected={selectedSessions} onToggle={(v) => toggleArr(selectedSessions, setSelectedSessions, v)} />
@@ -149,7 +149,7 @@ function FilterGroup({ label, items, selected, onToggle }: { label: string; item
 
 function CounselorCard({ counselor: c, navigate }: { counselor: Counselor; navigate: (page: Page, params?: { counselorId?: string }) => void }) {
   return (
-    <div className="bg-cream border border-border hover:border-sageMid rounded-2xl overflow-hidden transition-all group">
+    <div className="bg-cream border border-border hover:border-sageMid rounded-[12px] overflow-hidden transition-all group">
       <div className="flex gap-4 p-5">
         <div className="w-20 h-20 rounded-xl overflow-hidden bg-sand flex-shrink-0">
           <img src={c.photo} alt={c.name} className="w-full h-full object-cover object-top" />

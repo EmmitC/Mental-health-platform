@@ -150,7 +150,7 @@ export default function Home({ navigate }: HomeProps) {
                 whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.98 }}
                 transition={springs.responsive}
-                className={`group flex h-full w-full flex-col rounded-3xl p-6 text-left transition-colors ${tones[tone]}`}
+                className={`group flex h-full w-full flex-col rounded-[12px] p-6 text-left transition-colors ${tones[tone]}`}
               >
                 <span className="mb-10 flex h-11 w-11 items-center justify-center rounded-full bg-cream/25">
                   <Icon name={icon} className="h-5 w-5" />
@@ -191,7 +191,7 @@ export default function Home({ navigate }: HomeProps) {
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={springs.responsive}
-                className="h-full bg-cream border border-border hover:border-sageMid rounded-3xl overflow-hidden group"
+                className="h-full bg-cream border border-border hover:border-sageMid rounded-[12px] overflow-hidden group"
               >
                 <div className="h-56 overflow-hidden bg-sand">
                   <img
@@ -295,7 +295,7 @@ export default function Home({ navigate }: HomeProps) {
         </Reveal>
         <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <StaggerItem className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-3xl bg-sage p-6 text-cream">
+            <div className="flex h-full flex-col justify-between rounded-[12px] bg-sage p-6 text-cream">
               <p className="text-sm font-[600] opacity-90">Wellbeing score</p>
               <div className="my-6 flex items-center gap-5">
                 <ProgressRing value={80} size={104}>
@@ -307,7 +307,7 @@ export default function Home({ navigate }: HomeProps) {
             </div>
           </StaggerItem>
           <StaggerItem className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-3xl bg-ember p-6 text-slate">
+            <div className="flex h-full flex-col justify-between rounded-[12px] bg-ember p-6 text-slate">
               <p className="text-sm font-[600]">This week's mood</p>
               <div className="my-6 flex h-24 items-end gap-2" role="img" aria-label="Mood rising across the week">
                 {[35, 55, 40, 70, 90, 75, 60].map((h, i) => (
@@ -325,7 +325,7 @@ export default function Home({ navigate }: HomeProps) {
             </div>
           </StaggerItem>
           <StaggerItem className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-3xl bg-sun p-6 text-slate">
+            <div className="flex h-full flex-col justify-between rounded-[12px] bg-sun p-6 text-slate">
               <p className="text-sm font-[600]">How are you feeling?</p>
               <div className="my-6 flex justify-between text-slate">
                 {[0, 1, 2, 3, 4].map((i) => (
@@ -363,7 +363,7 @@ export default function Home({ navigate }: HomeProps) {
               <button
                 key={title}
                 onClick={() => navigate("resources")}
-                className="group text-left bg-cream border border-border hover:border-sageMid rounded-2xl overflow-hidden transition-all"
+                className="group text-left bg-cream border border-border hover:border-sageMid rounded-[12px] overflow-hidden transition-all"
               >
                 <div className="h-44 overflow-hidden bg-sand">
                   <img

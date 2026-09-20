@@ -160,7 +160,7 @@ export default function Notifications({ navigate }: NotificationsProps) {
               return (
                 <div
                   key={n.id}
-                  className={`rounded-2xl border p-5 transition-all ${
+                  className={`rounded-[12px] border p-5 transition-all ${
                     n.read ? "bg-cream border-border" : "bg-sageL/30 border-sageMid"
                   }`}
                 >

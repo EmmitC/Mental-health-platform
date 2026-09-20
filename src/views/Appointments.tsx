@@ -172,7 +172,7 @@ export default function Appointments({ navigate }: AppointmentsProps) {
         {/* Cancel Modal */}
         {cancelModal && (
           <div className="fixed inset-0 bg-slate/40 backdrop-blur-sm z-50 flex items-center justify-center p-5">
-            <div className="bg-cream rounded-2xl p-7 max-w-md w-full shadow-[0_12px_40px_-8px_rgba(60,32,16,0.22)]">
+            <div className="bg-cream rounded-[12px] p-7 max-w-md w-full shadow-[0_12px_40px_-8px_rgba(60,32,16,0.22)]">
               <h2 className="font-display text-2xl font-[400] text-slate mb-2">Cancel Appointment?</h2>
               <p className="text-slateM text-sm mb-5">
                 Are you sure you want to cancel your{" "}
@@ -234,7 +234,7 @@ function AppointmentCard({
   navigate: (page: Page, params?: { counselorId?: string }) => void;
 }) {
   return (
-    <div className={`bg-cream border rounded-2xl overflow-hidden transition-all ${isSelected ? "border-sage bg-sageL/20" : "border-border hover:border-sageMid"}`}>
+    <div className={`bg-cream border rounded-[12px] overflow-hidden transition-all ${isSelected ? "border-sage bg-sageL/20" : "border-border hover:border-sageMid"}`}>
       <div className="p-5 flex items-start gap-4">
         <img src={a.counselor.photo} alt={a.counselor.name} className="w-12 h-12 rounded-xl object-cover object-top bg-sand flex-shrink-0" />
         <div className="flex-1 min-w-0">

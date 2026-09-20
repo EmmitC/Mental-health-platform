@@ -183,7 +183,7 @@ export default function CounselorCalendar({ navigate: _navigate }: CounselorCale
             ))}
           </div>
 
-          <div className="mt-8 p-5 bg-sand border border-border rounded-2xl">
+          <div className="mt-8 p-5 bg-sand border border-border rounded-[12px]">
             <h3 className="font-[600] text-slate mb-2">Lunch break</h3>
             <p className="text-slateM text-sm mb-3">Automatically block a time each day for a break.</p>
             <div className="flex items-center gap-2">
